@@ -1,0 +1,2867 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ôn Luyện Công Nghệ 12 - Giữa Kì 1</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background-color: #cbd5e1;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased">
+
+  <!-- ================= MÀN HÌNH 1: CẤU HÌNH & THIẾT LẬP (START SCREEN) ================= -->
+  <div id="startScreen" class="min-h-screen flex flex-col justify-center items-center p-4">
+    <div class="max-w-xl w-full bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+      <!-- Banner Header -->
+      <div class="bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 p-6 text-white text-center">
+        <span class="inline-block bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
+          Đề cương ôn tập giữa kì 1
+        </span>
+        <h1 class="text-2xl font-extrabold tracking-tight">ÔN TẬP CÔNG NGHỆ 12</h1>
+        <p class="text-blue-100 text-xs mt-1">Kĩ thuật điện • Mạch điện 3 pha • Hệ thống điện quốc gia</p>
+      </div>
+
+      <!-- Nội dung cài đặt -->
+      <div class="p-6 space-y-5">
+        <!-- 1. Chọn bài học -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">
+            1. Chọn phần nội dung ôn tập:
+          </label>
+          
+          <!-- Dropdown tùy chỉnh thu gọn gọn gàng -->
+          <div class="relative">
+            <button type="button" id="lessonDropdownBtn" class="w-full flex items-center justify-between p-3.5 bg-slate-50 hover:bg-slate-100 border border-slate-300 rounded-xl text-left transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex items-center gap-3">
+                <span id="selectedLessonIcon" class="text-xl">⚡</span>
+                <div>
+                  <div id="selectedLessonTitle" class="text-sm font-bold text-slate-900">Toàn bộ đề cương (77 câu TN + 10 câu Đ/S)</div>
+                  <div id="selectedLessonDesc" class="text-[11px] text-slate-500">Bao gồm tất cả các chủ đề giữa kì 1</div>
+                </div>
+              </div>
+              <svg id="dropdownArrow" class="w-5 h-5 text-slate-500 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+
+            <!-- Menu xổ xuống -->
+            <div id="lessonDropdownMenu" class="hidden absolute top-full left-0 right-0 mt-2 bg-white border border-slate-200 rounded-xl shadow-xl z-30 overflow-hidden divide-y divide-slate-100 max-h-72 overflow-y-auto custom-scroll">
+              <div class="lesson-option p-3 cursor-pointer hover:bg-blue-50 transition flex items-center justify-between bg-blue-50/60" data-value="all" data-icon="⚡" data-title="Toàn bộ đề cương (77 câu TN + 10 câu Đ/S)" data-desc="Tất cả các chủ đề ôn thi giữa kì">
+                <div class="flex items-center gap-3">
+                  <span class="text-lg">⚡</span>
+                  <div>
+                    <div class="text-sm font-bold text-slate-900">Toàn bộ đề cương</div>
+                    <div class="text-xs text-slate-500">77 câu TN nhiều lựa chọn + 10 câu Đúng/Sai</div>
+                  </div>
+                </div>
+                <span class="text-blue-600 font-bold text-sm checkmark">✓</span>
+              </div>
+
+              <div class="lesson-option p-3 cursor-pointer hover:bg-blue-50 transition flex items-center justify-between" data-value="c1" data-icon="💡" data-title="Chủ đề 1: Khái niệm & Vai trò kĩ thuật điện" data-desc="Câu 1 đến Câu 21 • Ngành nghề & vai trò sản xuất">
+                <div class="flex items-center gap-3">
+                  <span class="text-lg">💡</span>
+                  <div>
+                    <div class="text-sm font-bold text-slate-900">Chủ đề 1: Khái niệm & Vai trò kĩ thuật điện</div>
+                    <div class="text-xs text-slate-500">21 câu TN (Câu 1 - 21)</div>
+                  </div>
+                </div>
+                <span class="text-blue-600 font-bold text-sm checkmark hidden">✓</span>
+              </div>
+
+              <div class="lesson-option p-3 cursor-pointer hover:bg-blue-50 transition flex items-center justify-between" data-value="c2" data-icon="🔄" data-title="Chủ đề 2: Mạch điện xoay chiều ba pha" data-desc="Câu 22 đến Câu 44 • Nối sao, tam giác, sơ đồ & bài tập">
+                <div class="flex items-center gap-3">
+                  <span class="text-lg">🔄</span>
+                  <div>
+                    <div class="text-sm font-bold text-slate-900">Chủ đề 2: Mạch điện xoay chiều ba pha</div>
+                    <div class="text-xs text-slate-500">23 câu TN (Câu 22 - 44) + Bài tập Đúng/Sai</div>
+                  </div>
+                </div>
+                <span class="text-blue-600 font-bold text-sm checkmark hidden">✓</span>
+              </div>
+
+              <div class="lesson-option p-3 cursor-pointer hover:bg-blue-50 transition flex items-center justify-between" data-value="c3" data-icon="🌐" data-title="Chủ đề 3: Hệ thống điện quốc gia & Sản xuất điện" data-desc="Câu 45 đến Câu 69 • Lưới điện, trạm biến áp, nhà máy">
+                <div class="flex items-center gap-3">
+                  <span class="text-lg">🌐</span>
+                  <div>
+                    <div class="text-sm font-bold text-slate-900">Chủ đề 3: Hệ thống điện quốc gia & Sản xuất điện</div>
+                    <div class="text-xs text-slate-500">25 câu TN (Câu 45 - 69) + Sơ đồ hệ thống</div>
+                  </div>
+                </div>
+                <span class="text-blue-600 font-bold text-sm checkmark hidden">✓</span>
+              </div>
+
+              <div class="lesson-option p-3 cursor-pointer hover:bg-blue-50 transition flex items-center justify-between" data-value="c4" data-icon="🏭" data-title="Chủ đề 4: Mạng điện sản xuất quy mô nhỏ" data-desc="Câu 70 đến Câu 77 • Tủ điện, an toàn vận hành">
+                <div class="flex items-center gap-3">
+                  <span class="text-lg">🏭</span>
+                  <div>
+                    <div class="text-sm font-bold text-slate-900">Chủ đề 4: Mạng điện sản xuất quy mô nhỏ</div>
+                    <div class="text-xs text-slate-500">8 câu TN (Câu 70 - 77) + Câu Đúng/Sai</div>
+                  </div>
+                </div>
+                <span class="text-blue-600 font-bold text-sm checkmark hidden">✓</span>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="selectedLessonValue" value="all">
+        </div>
+
+        <!-- 2. Tùy chọn đảo câu hỏi -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">
+            2. Chế độ thứ tự câu hỏi:
+          </label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+              <input type="radio" name="shuffleOption" value="no" checked class="w-4 h-4 text-blue-600 focus:ring-blue-600 cursor-pointer">
+              <div class="text-xs font-semibold text-slate-700">
+                <span class="block font-bold text-slate-900">Không đảo câu</span>
+                Theo thứ tự đề cương
+              </div>
+            </label>
+            <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+              <input type="radio" name="shuffleOption" value="yes" class="w-4 h-4 text-blue-600 focus:ring-blue-600 cursor-pointer">
+              <div class="text-xs font-semibold text-slate-700">
+                <span class="block font-bold text-slate-900">Đảo câu hỏi</span>
+                Xáo trộn ngẫu nhiên
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- 3. Chế độ học tập -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">
+            3. Chế độ ôn luyện:
+          </label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+              <input type="radio" name="modeOption" value="exam" checked class="w-4 h-4 text-blue-600 focus:ring-blue-600 cursor-pointer">
+              <div class="text-xs font-semibold text-slate-700">
+                <span class="block font-bold text-slate-900">Làm bài thi</span>
+                Nộp bài xong mới xem đáp án
+              </div>
+            </label>
+            <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+              <input type="radio" name="modeOption" value="study" class="w-4 h-4 text-blue-600 focus:ring-blue-600 cursor-pointer">
+              <div class="text-xs font-semibold text-slate-700">
+                <span class="block font-bold text-slate-900">Xem đáp án sẵn</span>
+                Hiện sẵn đáp án chuẩn
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Hướng dẫn nhận diện màu -->
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-3 text-xs text-blue-900 flex items-start gap-2">
+          <span class="text-base">💡</span>
+          <div>
+            <strong>Màu sắc nhận diện:</strong>
+            <span class="inline-flex items-center text-blue-700 font-bold ml-1">● Đang chọn: Xanh nước</span> | 
+            <span class="inline-flex items-center text-emerald-600 font-bold ml-1">● Đúng: Xanh lá</span> | 
+            <span class="inline-flex items-center text-red-600 font-bold ml-1">● Sai: Đỏ</span>
+          </div>
+        </div>
+
+        <!-- Nút bấm bắt đầu -->
+        <button id="startExamBtn" class="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-blue-600/30 transition transform hover:-translate-y-0.5 text-base flex justify-center items-center gap-2">
+          <span>🚀</span> BẮT ĐẦU ÔN LUYỆN
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MÀN HÌNH 2: GIAO DIỆN LÀM BÀI (EXAM SCREEN) ================= -->
+  <div id="examScreen" class="hidden min-h-screen flex flex-col">
+    <!-- Header cố định -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-sm">
+      <div class="max-w-5xl mx-auto px-3 sm:px-4 py-2.5 flex items-center justify-between gap-2">
+        <div class="flex items-center gap-1.5 min-w-0 flex-1">
+          <button id="backToConfigBtn" class="shrink-0 p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg hover:bg-slate-100 text-slate-700 text-xs font-bold flex items-center gap-1 border border-slate-200 shadow-sm active:scale-95 transition">
+            <svg class="w-3.5 h-3.5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
+            <span class="hidden xs:inline sm:inline">Chọn lại bài</span>
+          </button>
+          <h2 id="currentLessonBadge" class="text-xs sm:text-sm font-bold text-blue-700 truncate flex-1 min-w-0 pl-1">
+            Đề Cương Công Nghệ 12
+          </h2>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <div class="bg-slate-100 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg border border-slate-200 text-[11px] sm:text-xs font-bold text-slate-700 whitespace-nowrap">
+            Tiến độ: <span id="progressCount" class="text-blue-600">0</span>/<span id="totalQuestionsCount">0</span>
+          </div>
+          <button id="resetCurrentExamBtn" class="text-[11px] sm:text-xs text-slate-600 hover:text-blue-600 border border-slate-200 px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-lg hover:bg-slate-50 transition active:scale-95">
+            Làm lại
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Thẻ trạng thái & giải thích màu -->
+    <div class="bg-white border-b border-slate-200 py-1.5 sm:py-2">
+      <div class="max-w-4xl mx-auto px-3 sm:px-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 text-[11px] sm:text-xs text-slate-600">
+        <div class="truncate">
+          Trạng thái: <span id="examStatusText" class="font-bold text-slate-900">Đang làm bài...</span>
+        </div>
+        <div class="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-xs overflow-x-auto">
+          <span class="flex items-center gap-0.5 font-bold text-blue-600 whitespace-nowrap">● Đang chọn: Xanh nước</span>
+          <span class="flex items-center gap-0.5 font-bold text-emerald-600 whitespace-nowrap">● Đúng: Xanh lá</span>
+          <span class="flex items-center gap-0.5 font-bold text-red-600 whitespace-nowrap">● Sai: Đỏ</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Thanh lọc kết quả sau khi nộp bài -->
+    <div id="postSubmitFilterBar" class="hidden bg-slate-100 border-b border-slate-200 py-2">
+      <div class="max-w-4xl mx-auto px-3 sm:px-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+        <div class="flex items-center gap-1.5 w-full sm:w-auto">
+          <span class="font-bold text-slate-700 text-[11px] shrink-0">Lọc kết quả:</span>
+          <div class="inline-flex rounded-lg border border-slate-300 bg-white p-0.5 w-full sm:w-auto justify-between" role="group">
+            <button type="button" id="filterAllQuestionsBtn" onclick="setPostSubmitFilter('all')" class="flex-1 sm:flex-initial text-center px-2 sm:px-3 py-1 font-bold rounded-md bg-slate-800 text-white transition text-[11px] sm:text-xs">
+              Tất cả (<span id="countFilterAll">0</span>)
+            </button>
+            <button type="button" id="filterWrongQuestionsBtn" onclick="setPostSubmitFilter('wrong')" class="flex-1 sm:flex-initial text-center px-2 sm:px-3 py-1 font-bold rounded-md text-red-600 hover:bg-red-50 transition text-[11px] sm:text-xs">
+              ⚠️ Chỉ câu sai (<span id="countFilterWrong">0</span>)
+            </button>
+            <button type="button" id="filterCorrectQuestionsBtn" onclick="setPostSubmitFilter('correct')" class="flex-1 sm:flex-initial text-center px-2 sm:px-3 py-1 font-bold rounded-md text-emerald-600 hover:bg-emerald-50 transition text-[11px] sm:text-xs">
+              ✓ Chỉ câu đúng (<span id="countFilterCorrect">0</span>)
+            </button>
+          </div>
+        </div>
+        <div id="wrongNoticeText" class="text-[11px] sm:text-xs font-semibold text-slate-600"></div>
+      </div>
+    </div>
+
+    <!-- Khung hiển thị danh sách câu hỏi -->
+    <main class="max-w-4xl w-full mx-auto p-3 sm:p-6 flex-1">
+      <div id="questionsContainer" class="space-y-4 sm:space-y-6">
+        <!-- Render danh sách câu hỏi bằng JavaScript -->
+      </div>
+    </main>
+
+    <!-- Footer thanh điều khiển cố định -->
+    <footer class="bg-white border-t border-slate-200 py-3 sticky bottom-0 z-20 shadow-lg">
+      <div class="max-w-4xl mx-auto px-4 flex justify-between items-center">
+        <span class="text-xs text-slate-500 font-medium">Công Nghệ 12 - Ôn tập Giữa Kì 1</span>
+        <button id="submitExamBtn" class="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold text-xs sm:text-sm px-6 py-2.5 rounded-xl shadow-md shadow-blue-600/30 transition">
+          Nộp bài & Xem đáp án
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal thông báo tự chế không alert/confirm -->
+  <div id="appModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100 transform transition-all">
+      <div id="modalIconContainer" class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 bg-blue-100 text-blue-600 font-bold text-xl">
+        !
+      </div>
+      <h3 id="modalTitle" class="text-lg font-extrabold text-center text-slate-900 mb-2">Thông báo</h3>
+      <div id="modalMessage" class="text-xs sm:text-sm text-slate-600 text-center leading-relaxed mb-6">
+        Nội dung thông báo
+      </div>
+      <div id="modalActions" class="flex gap-3 justify-center">
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT LOGIC & DỮ LIỆU ĐỀ CƯƠNG CÔNG NGHỆ 12 ================= -->
+  <script>
+    // ẢNH GỐC TỪ ĐỀ CƯƠNG (HIỂN THỊ Y CHANG NGUYÊN BẢN TRONG SÁCH GIÁO KHOA/FILE ĐỀ CƯƠNG)
+    const ORIGINAL_IMAGES = {
+      // Hình mạch 3 pha Nguồn Y - Tải Y không dây trung tính (Câu 27, Câu 42)
+      fig_c27_42: `
+        <div class="my-3 text-center flex justify-center">
+          <svg viewBox="0 0 320 150" class="max-w-full sm:max-w-md mx-auto rounded-xl border border-slate-200 shadow-sm bg-white p-2" xmlns="http://www.w3.org/2000/svg" style="font-family: Arial, sans-serif;">
+            <!-- Nền xám nhạt mờ bao quanh phần tải bên phải -->
+            <path d="M142,34 C142,34 142,130 142,130 C142,134 260,134 260,134 L260,34 Z" fill="#f1f5f9" />
+            
+            <!-- ĐƯỜNG DÂY NỐI 3 PHA MÀU XANH NƯỚC BIỂN -->
+            <!-- Dây pha A: từ điểm A (60, 28) sang A tải (256, 28) -->
+            <line x1="60" y1="28" x2="256" y2="28" stroke="#009fe3" stroke-width="1.8" />
+            <polygon points="152,26 156,28 152,30" fill="#009fe3" />
+            <text x="146" y="24" font-size="9" fill="#222" font-weight="bold">I<tspan font-size="7" dy="2">A</tspan></text>
+            
+            <!-- Dây pha B: từ B (106, 114) xuống (106, 122) sang B tải (298, 122) lên (298, 114) -->
+            <polyline points="106,114 106,122 298,122 298,114" fill="none" stroke="#009fe3" stroke-width="1.8" />
+            <polygon points="152,120 156,122 152,124" fill="#009fe3" />
+            <text x="146" y="118" font-size="9" fill="#222" font-weight="bold">I<tspan font-size="7" dy="2">B</tspan></text>
+
+            <!-- Dây pha C: từ C (22, 114) xuống (22, 138) sang C tải (206, 138) lên (206, 114) -->
+            <polyline points="22,114 22,138 206,138 206,114" fill="none" stroke="#009fe3" stroke-width="1.8" />
+            <polygon points="152,136 156,138 152,140" fill="#009fe3" />
+            <text x="146" y="134" font-size="9" fill="#222" font-weight="bold">I<tspan font-size="7" dy="2">C</tspan></text>
+
+            <!-- NGUỒN 3 PHA BÊN TRÁI NỐI HÌNH SAO (Y) -->
+            <!-- Điểm trung tính O nguồn -->
+            <line x1="60" y1="72" x2="60" y2="28" stroke="#009fe3" stroke-width="1.8" />
+            <line x1="60" y1="72" x2="22" y2="114" stroke="#009fe3" stroke-width="1.8" />
+            <line x1="60" y1="72" x2="106" y2="114" stroke="#009fe3" stroke-width="1.8" />
+
+            <!-- Điểm nút O và các nhãn A, B, C, O -->
+            <circle cx="60" cy="72" r="2.2" fill="#009fe3" />
+            <text x="50" y="75" font-size="10" fill="#222" font-weight="bold">O</text>
+            <circle cx="60" cy="28" r="2" fill="#009fe3" />
+            <text x="56" y="24" font-size="10" fill="#222" font-weight="bold">A</text>
+            <circle cx="106" cy="114" r="2" fill="#009fe3" />
+            <text x="112" y="118" font-size="10" fill="#222" font-weight="bold">B</text>
+            <circle cx="22" cy="114" r="2" fill="#009fe3" />
+            <text x="8" y="118" font-size="10" fill="#222" font-weight="bold">C</text>
+
+            <!-- Cuộn pha eA -->
+            <circle cx="60" cy="50" r="7" fill="#fbcfe8" stroke="#009fe3" stroke-width="1.2" />
+            <line x1="60" y1="54" x2="60" y2="46" stroke="#831843" stroke-width="1.2" />
+            <polygon points="58,47 60,44 62,47" fill="#831843" />
+            <text x="70" y="53" font-size="8.5" fill="#222" font-weight="bold">e<tspan font-size="6.5" dy="2">A</tspan></text>
+
+            <!-- Cuộn pha eB -->
+            <circle cx="83" cy="93" r="7" fill="#fbcfe8" stroke="#009fe3" stroke-width="1.2" />
+            <line x1="80" y1="90" x2="86" y2="96" stroke="#831843" stroke-width="1.2" />
+            <polygon points="87,93 88,98 83,97" fill="#831843" />
+            <text x="93" y="96" font-size="8.5" fill="#222" font-weight="bold">e<tspan font-size="6.5" dy="2">B</tspan></text>
+
+            <!-- Cuộn pha eC -->
+            <circle cx="37" cy="93" r="7" fill="#fbcfe8" stroke="#009fe3" stroke-width="1.2" />
+            <line x1="40" y1="90" x2="34" y2="96" stroke="#831843" stroke-width="1.2" />
+            <polygon points="37,97 32,98 33,93" fill="#831843" />
+            <text x="45" y="103" font-size="8.5" fill="#222" font-weight="bold">e<tspan font-size="6.5" dy="2">C</tspan></text>
+
+            <!-- ĐO ĐIỆN ÁP PHA Up CỦA NGUỒN -->
+            <line x1="60" y1="72" x2="108" y2="72" stroke="#009fe3" stroke-width="1" />
+            <line x1="98" y1="34" x2="98" y2="72" stroke="#009fe3" stroke-width="1" />
+            <polygon points="96,36 98,32 100,36" fill="#009fe3" />
+            <polygon points="96,69 98,73 100,69" fill="#009fe3" />
+            <text x="103" y="55" font-size="10" fill="#222" font-weight="bold">U<tspan font-size="7.5" dy="2">P</tspan></text>
+
+            <!-- ĐO ĐIỆN ÁP DÂY Ud -->
+            <line x1="168" y1="33" x2="168" y2="117" stroke="#009fe3" stroke-width="1.2" />
+            <polygon points="166,35 168,31 170,35" fill="#009fe3" />
+            <polygon points="166,115 168,119 170,115" fill="#009fe3" />
+            <text x="173" y="78" font-size="11" fill="#222" font-weight="bold">U<tspan font-size="8" dy="2">d</tspan></text>
+
+            <!-- TẢI 3 PHA NỐI HÌNH SAO BÊN PHẢI (Y) -->
+            <!-- Điểm trung tính O' tải -->
+            <line x1="256" y1="28" x2="256" y2="72" stroke="#009fe3" stroke-width="1.8" />
+            <line x1="206" y1="114" x2="256" y2="72" stroke="#009fe3" stroke-width="1.8" />
+            <line x1="298" y1="114" x2="256" y2="72" stroke="#009fe3" stroke-width="1.8" />
+
+            <!-- Điểm nút O' và nhãn A, B, C, O' của tải -->
+            <circle cx="256" cy="72" r="2.2" fill="#009fe3" />
+            <text x="244" y="69" font-size="9" fill="#222" font-weight="bold">O'</text>
+            <circle cx="256" cy="28" r="2" fill="#009fe3" />
+            <text x="252" y="24" font-size="10" fill="#222" font-weight="bold">A</text>
+            <circle cx="298" cy="114" r="2" fill="#009fe3" />
+            <text x="303" y="118" font-size="10" fill="#222" font-weight="bold">B</text>
+            <circle cx="206" cy="114" r="2" fill="#009fe3" />
+            <text x="195" y="118" font-size="10" fill="#222" font-weight="bold">C</text>
+
+            <!-- Dòng Ip trên pha tải A -->
+            <polygon points="254,42 256,45 258,42" fill="#009fe3" />
+            <text x="261" y="44" font-size="8.5" fill="#222" font-weight="bold">I<tspan font-size="6.5" dy="2">P</tspan></text>
+
+            <!-- Tải ZA (hình chữ nhật vàng) -->
+            <rect x="252" y="48" width="8" height="15" fill="#bef264" stroke="#65a30d" stroke-width="1" />
+            <text x="238" y="55" font-size="8.5" fill="#222" font-weight="bold">Z<tspan font-size="6.5" dy="2">A</tspan></text>
+
+            <!-- Tải ZB -->
+            <rect x="274" y="88" width="15" height="8" transform="rotate(-38 281 92)" fill="#bef264" stroke="#65a30d" stroke-width="1" />
+            <text x="282" y="85" font-size="8.5" fill="#222" font-weight="bold">Z<tspan font-size="6.5" dy="2">B</tspan></text>
+
+            <!-- Tải ZC -->
+            <rect x="221" y="88" width="15" height="8" transform="rotate(38 228 92)" fill="#bef264" stroke="#65a30d" stroke-width="1" />
+            <text x="232" y="105" font-size="8.5" fill="#222" font-weight="bold">Z<tspan font-size="6.5" dy="2">C</tspan></text>
+          </svg>
+        </div>
+      `,
+      // HÌNH A: Nguồn ba pha nối hình sao không trung tính (3 dây)
+      fig_opt_A: `
+        <div class="my-2 flex justify-center">
+          <svg viewBox="0 0 160 140" class="h-32 sm:h-36 rounded-lg border border-slate-200 p-1 bg-white shadow-sm" xmlns="http://www.w3.org/2000/svg" style="font-family: Arial, sans-serif;">
+            <line x1="65" y1="80" x2="65" y2="20" stroke="#009fe3" stroke-width="2" />
+            <line x1="65" y1="80" x2="20" y2="110" stroke="#009fe3" stroke-width="2" />
+            <line x1="65" y1="80" x2="110" y2="110" stroke="#009fe3" stroke-width="2" />
+            <line x1="65" y1="20" x2="150" y2="20" stroke="#009fe3" stroke-width="2" />
+            <polyline points="110,110 110,122 150,122" fill="none" stroke="#009fe3" stroke-width="2" />
+            <polyline points="20,110 20,135 150,135" fill="none" stroke="#009fe3" stroke-width="2" />
+            <circle cx="65" cy="80" r="2.5" fill="#009fe3" />
+            <circle cx="65" cy="20" r="2.5" fill="#009fe3" />
+            <circle cx="150" cy="20" r="2.5" fill="#009fe3" />
+            <circle cx="110" cy="110" r="2.5" fill="#009fe3" />
+            <circle cx="150" cy="122" r="2.5" fill="#009fe3" />
+            <circle cx="20" cy="110" r="2.5" fill="#009fe3" />
+            <circle cx="150" cy="135" r="2.5" fill="#009fe3" />
+            <circle cx="65" cy="50" r="8" fill="#fbcfe8" stroke="#009fe3" stroke-width="1.2" />
+            <line x1="65" y1="54" x2="65" y2="46" stroke="#831843" stroke-width="1.2" />
+            <polygon points="63,47 65,44 67,47" fill="#831843" />
+            <circle cx="90" cy="97" r="8" fill="#fbcfe8" stroke="#009fe3" stroke-width="1.2" />
+            <line x1="87" y1="94" x2="93" y2="100" stroke="#831843" stroke-width="1.2" />
+            <polygon points="94,97 95,102 90,101" fill="#831843" />
+            <circle cx="40" cy="97" r="8" fill="#fbcfe8" stroke="#009fe3" stroke-width="1.2" />
+            <line x1="43" y1="94" x2="37" y2="100" stroke="#831843" stroke-width="1.2" />
+            <polygon points="40,101 35,102 36,97" fill="#831843" />
+            <text x="65" y="14" font-size="10" font-weight="bold" fill="#222" text-anchor="middle">A</text>
+            <text x="120" y="112" font-size="10" font-weight="bold" fill="#222">B</text>
+            <text x="8" y="112" font-size="10" font-weight="bold" fill="#222">C</text>
+            <text x="56" y="88" font-size="9" font-weight="bold" fill="#222">O</text>
+            <text x="54" y="77" font-size="9" font-weight="bold" fill="#222">Y</text>
+            <text x="70" y="77" font-size="9" font-weight="bold" fill="#222">Z</text>
+            <text x="70" y="88" font-size="9" font-weight="bold" fill="#222">X</text>
+            <text x="76" y="53" font-size="9" font-weight="bold" fill="#222">e<tspan font-size="7" dy="2">A</tspan></text>
+            <text x="101" y="99" font-size="9" font-weight="bold" fill="#222">e<tspan font-size="7" dy="2">B</tspan></text>
+            <text x="47" y="107" font-size="9" font-weight="bold" fill="#222">e<tspan font-size="7" dy="2">C</tspan></text>
+          </svg>
+        </div>
+      `,
+      // HÌNH B: Nguồn ba pha nối hình sao có dây trung tính (4 dây)
+      fig_opt_B: `
+        <div class="my-2 flex justify-center">
+          <svg viewBox="0 0 160 140" class="h-32 sm:h-36 rounded-lg border border-slate-200 p-1 bg-white shadow-sm" xmlns="http://www.w3.org/2000/svg" style="font-family: Arial, sans-serif;">
+            <line x1="60" y1="75" x2="60" y2="18" stroke="#009fe3" stroke-width="2" />
+            <line x1="60" y1="75" x2="16" y2="105" stroke="#009fe3" stroke-width="2" />
+            <line x1="60" y1="75" x2="104" y2="105" stroke="#009fe3" stroke-width="2" />
+            <line x1="60" y1="18" x2="148" y2="18" stroke="#009fe3" stroke-width="2" />
+            <line x1="60" y1="75" x2="148" y2="75" stroke="#009fe3" stroke-width="2" />
+            <polyline points="104,105 104,118 148,118" fill="none" stroke="#009fe3" stroke-width="2" />
+            <polyline points="16,105 16,132 148,132" fill="none" stroke="#009fe3" stroke-width="2" />
+            <circle cx="60" cy="75" r="2.5" fill="#009fe3" />
+            <circle cx="60" cy="18" r="2.5" fill="#009fe3" />
+            <circle cx="148" cy="18" r="2.5" fill="#009fe3" />
+            <circle cx="148" cy="75" r="2.5" fill="#009fe3" />
+            <circle cx="104" cy="105" r="2.5" fill="#009fe3" />
+            <circle cx="148" cy="118" r="2.5" fill="#009fe3" />
+            <circle cx="16" cy="105" r="2.5" fill="#009fe3" />
+            <circle cx="148" cy="132" r="2.5" fill="#009fe3" />
+            <circle cx="60" cy="46" r="8" fill="#fbcfe8" stroke="#009fe3" stroke-width="1.2" />
+            <line x1="60" y1="50" x2="60" y2="42" stroke="#831843" stroke-width="1.2" />
+            <polygon points="58,43 60,40 62,43" fill="#831843" />
+            <circle cx="84" cy="92" r="8" fill="#fbcfe8" stroke="#009fe3" stroke-width="1.2" />
+            <line x1="81" y1="89" x2="87" y2="95" stroke="#831843" stroke-width="1.2" />
+            <polygon points="88,92 89,97 84,96" fill="#831843" />
+            <circle cx="36" cy="92" r="8" fill="#fbcfe8" stroke="#009fe3" stroke-width="1.2" />
+            <line x1="39" y1="89" x2="33" y2="95" stroke="#831843" stroke-width="1.2" />
+            <polygon points="36,96 31,97 32,92" fill="#831843" />
+            <text x="60" y="12" font-size="10" font-weight="bold" fill="#222" text-anchor="middle">A</text>
+            <text x="114" y="108" font-size="10" font-weight="bold" fill="#222">B</text>
+            <text x="6" y="108" font-size="10" font-weight="bold" fill="#222">C</text>
+            <text x="153" y="78" font-size="10" font-weight="bold" fill="#222">O</text>
+            <text x="52" y="84" font-size="8.5" font-weight="bold" fill="#222">O</text>
+            <text x="50" y="72" font-size="8.5" font-weight="bold" fill="#222">Y</text>
+            <text x="66" y="72" font-size="8.5" font-weight="bold" fill="#222">Z</text>
+            <text x="66" y="84" font-size="8.5" font-weight="bold" fill="#222">X</text>
+            <text x="71" y="49" font-size="9" font-weight="bold" fill="#222">e<tspan font-size="7" dy="2">A</tspan></text>
+            <text x="94" y="95" font-size="9" font-weight="bold" fill="#222">e<tspan font-size="7" dy="2">B</tspan></text>
+            <text x="43" y="103" font-size="9" font-weight="bold" fill="#222">e<tspan font-size="7" dy="2">C</tspan></text>
+          </svg>
+        </div>
+      `,
+      // HÌNH C: Nguồn ba pha nối hình tam giác
+      fig_opt_C: `
+        <div class="my-2 flex justify-center">
+          <svg viewBox="0 0 160 140" class="h-32 sm:h-36 rounded-lg border border-slate-200 p-1 bg-white shadow-sm" xmlns="http://www.w3.org/2000/svg" style="font-family: Arial, sans-serif;">
+            <polygon points="65,22 20,110 110,110" fill="none" stroke="#009fe3" stroke-width="2" />
+            <line x1="65" y1="22" x2="152" y2="22" stroke="#009fe3" stroke-width="2" />
+            <polyline points="110,110 112,122 152,122" fill="none" stroke="#009fe3" stroke-width="2" />
+            <polyline points="20,110 20,135 152,135" fill="none" stroke="#009fe3" stroke-width="2" />
+            <circle cx="65" cy="22" r="2.5" fill="#009fe3" />
+            <circle cx="152" cy="22" r="2.5" fill="#009fe3" />
+            <circle cx="110" cy="110" r="2.5" fill="#009fe3" />
+            <circle cx="152" cy="122" r="2.5" fill="#009fe3" />
+            <circle cx="20" cy="110" r="2.5" fill="#009fe3" />
+            <circle cx="152" cy="135" r="2.5" fill="#009fe3" />
+            <circle cx="89" cy="69" r="8" fill="#fbcfe8" stroke="#009fe3" stroke-width="1.2" />
+            <line x1="91" y1="73" x2="87" y2="65" stroke="#831843" stroke-width="1.2" />
+            <polygon points="85,67 87,63 89,66" fill="#831843" />
+            <circle cx="41" cy="69" r="8" fill="#fbcfe8" stroke="#009fe3" stroke-width="1.2" />
+            <line x1="39" y1="65" x2="43" y2="73" stroke="#831843" stroke-width="1.2" />
+            <polygon points="41,75 45,75 44,71" fill="#831843" />
+            <circle cx="65" cy="110" r="8" fill="#fbcfe8" stroke="#009fe3" stroke-width="1.2" />
+            <line x1="61" y1="110" x2="69" y2="110" stroke="#831843" stroke-width="1.2" />
+            <polygon points="68,108 71,110 68,112" fill="#831843" />
+            <text x="65" y="14" font-size="10" font-weight="bold" fill="#222" text-anchor="middle">A</text>
+            <text x="118" y="112" font-size="10" font-weight="bold" fill="#222">B</text>
+            <text x="8" y="112" font-size="10" font-weight="bold" fill="#222">C</text>
+            <text x="65" y="36" font-size="9" font-weight="bold" fill="#222" text-anchor="middle">Z</text>
+            <text x="96" y="104" font-size="9" font-weight="bold" fill="#222">X</text>
+            <text x="28" y="104" font-size="9" font-weight="bold" fill="#222">Y</text>
+            <text x="100" y="68" font-size="9" font-weight="bold" fill="#222">e<tspan font-size="7" dy="2">A</tspan></text>
+            <text x="65" y="123" font-size="9" font-weight="bold" fill="#222" text-anchor="middle">e<tspan font-size="7" dy="2">B</tspan></text>
+            <text x="22" y="68" font-size="9" font-weight="bold" fill="#222">e<tspan font-size="7" dy="2">C</tspan></text>
+          </svg>
+        </div>
+      `,
+      // HÌNH D: Phụ tải ba pha nối hình sao
+      fig_opt_D: `
+        <div class="my-2 flex justify-center">
+          <svg viewBox="0 0 160 140" class="h-32 sm:h-36 rounded-lg border border-slate-200 p-1 bg-white shadow-sm" xmlns="http://www.w3.org/2000/svg" style="font-family: Arial, sans-serif;">
+            <line x1="80" y1="78" x2="80" y2="20" stroke="#009fe3" stroke-width="2" />
+            <line x1="80" y1="78" x2="20" y2="118" stroke="#009fe3" stroke-width="2" />
+            <line x1="80" y1="78" x2="140" y2="118" stroke="#009fe3" stroke-width="2" />
+            <circle cx="80" cy="78" r="2.5" fill="#009fe3" />
+            <circle cx="80" cy="20" r="2.5" fill="#009fe3" />
+            <circle cx="140" cy="118" r="2.5" fill="#009fe3" />
+            <circle cx="20" cy="118" r="2.5" fill="#009fe3" />
+            <rect x="76" y="38" width="8" height="18" fill="#bef264" stroke="#009fe3" stroke-width="1.2" />
+            <text x="88" y="50" font-size="9" font-weight="bold" fill="#222">Z<tspan font-size="7" dy="2">A</tspan></text>
+            <rect x="106" y="94" width="18" height="8" transform="rotate(-34 115 98)" fill="#bef264" stroke="#009fe3" stroke-width="1.2" />
+            <text x="122" y="94" font-size="9" font-weight="bold" fill="#222">Z<tspan font-size="7" dy="2">B</tspan></text>
+            <rect x="36" y="94" width="18" height="8" transform="rotate(34 45 98)" fill="#bef264" stroke="#009fe3" stroke-width="1.2" />
+            <text x="44" y="112" font-size="9" font-weight="bold" fill="#222">Z<tspan font-size="7" dy="2">C</tspan></text>
+            <text x="80" y="14" font-size="10" font-weight="bold" fill="#222" text-anchor="middle">A</text>
+            <text x="146" y="122" font-size="10" font-weight="bold" fill="#222">B</text>
+            <text x="10" y="122" font-size="10" font-weight="bold" fill="#222">C</text>
+            <text x="76" y="92" font-size="9" font-weight="bold" fill="#222">O</text>
+            <text x="68" y="78" font-size="8.5" font-weight="bold" fill="#222">Y</text>
+            <text x="88" y="78" font-size="8.5" font-weight="bold" fill="#222">Z</text>
+            <text x="88" y="90" font-size="8.5" font-weight="bold" fill="#222">X</text>
+          </svg>
+        </div>
+      `,
+      // Hình tải tam giác (Câu 39)
+      fig_c39: `
+        <div class="my-3 text-center flex justify-center">
+          <svg viewBox="0 0 170 150" class="h-44 sm:h-52 rounded-xl border border-slate-200 p-2 bg-white shadow-sm" xmlns="http://www.w3.org/2000/svg" style="font-family: Arial, sans-serif;">
+            <!-- Tam giác tải 3 pha -->
+            <polygon points="80,24 20,118 140,118" fill="none" stroke="#009fe3" stroke-width="2.2" />
+            <!-- Các đường chân tải ra ngoài -->
+            <line x1="80" y1="24" x2="80" y2="8" stroke="#009fe3" stroke-width="2.2" />
+            <line x1="20" y1="118" x2="20" y2="138" stroke="#009fe3" stroke-width="2.2" />
+            <line x1="140" y1="118" x2="140" y2="138" stroke="#009fe3" stroke-width="2.2" />
+            <!-- Điểm nút -->
+            <circle cx="80" cy="24" r="2.5" fill="#009fe3" />
+            <circle cx="20" cy="118" r="2.5" fill="#009fe3" />
+            <circle cx="140" cy="118" r="2.5" fill="#009fe3" />
+            <!-- Tải ZA trên cạnh A-B -->
+            <rect x="105" y="62" width="18" height="9" transform="rotate(-38 114 66)" fill="#bef264" stroke="#009fe3" stroke-width="1.2" />
+            <text x="122" y="66" font-size="9.5" font-weight="bold" fill="#222">Z<tspan font-size="7" dy="2">A</tspan></text>
+            <!-- Tải ZB trên cạnh B-C -->
+            <rect x="71" y="113.5" width="18" height="9" fill="#bef264" stroke="#009fe3" stroke-width="1.2" />
+            <text x="80" y="134" font-size="9.5" font-weight="bold" fill="#222" text-anchor="middle">Z<tspan font-size="7" dy="2">B</tspan></text>
+            <!-- Tải ZC trên cạnh C-A -->
+            <rect x="37" y="62" width="18" height="9" transform="rotate(38 46 66)" fill="#bef264" stroke="#009fe3" stroke-width="1.2" />
+            <text x="24" y="66" font-size="9.5" font-weight="bold" fill="#222">Z<tspan font-size="7" dy="2">C</tspan></text>
+            <!-- Nhãn A, B, C và X, Y, Z -->
+            <text x="70" y="20" font-size="10.5" font-weight="bold" fill="#222">A</text>
+            <text x="80" y="38" font-size="9.5" font-weight="bold" fill="#222" text-anchor="middle">Z</text>
+            <text x="148" y="122" font-size="10.5" font-weight="bold" fill="#222">B</text>
+            <text x="126" y="112" font-size="9.5" font-weight="bold" fill="#222">X</text>
+            <text x="8" y="122" font-size="10.5" font-weight="bold" fill="#222">C</text>
+            <text x="32" y="112" font-size="9.5" font-weight="bold" fill="#222">Y</text>
+          </svg>
+        </div>
+      `,
+      // Hình mạch nối tam giác - tam giác (Câu 40)
+      fig_c40: `
+        <div class="my-3 text-center flex justify-center">
+          <svg viewBox="0 0 310 155" class="max-w-full sm:max-w-md mx-auto rounded-xl border border-slate-200 p-2 bg-white shadow-sm" xmlns="http://www.w3.org/2000/svg" style="font-family: Arial, sans-serif;">
+            <!-- NGUỒN TAM GIÁC BÊN TRÁI -->
+            <polygon points="65,22 20,110 110,110" fill="none" stroke="#009fe3" stroke-width="1.8" />
+            <!-- Nút nguồn -->
+            <circle cx="65" cy="22" r="2.2" fill="#009fe3" />
+            <circle cx="20" cy="110" r="2.2" fill="#009fe3" />
+            <circle cx="110" cy="110" r="2.2" fill="#009fe3" />
+            <text x="65" y="16" font-size="10" font-weight="bold" fill="#222" text-anchor="middle">A</text>
+            <text x="65" y="34" font-size="9" font-weight="bold" fill="#222" text-anchor="middle">Z</text>
+            <text x="117" y="114" font-size="10" font-weight="bold" fill="#222">B</text>
+            <text x="96" y="104" font-size="9" font-weight="bold" fill="#222">X</text>
+            <text x="8" y="114" font-size="10" font-weight="bold" fill="#222">C</text>
+            <text x="28" y="104" font-size="9" font-weight="bold" fill="#222">Y</text>
+            <!-- 3 cuộn pha eA, eB, eC -->
+            <circle cx="88" cy="66" r="7" fill="#fbcfe8" stroke="#009fe3" stroke-width="1" />
+            <line x1="90" y1="70" x2="86" y2="62" stroke="#831843" stroke-width="1" />
+            <polygon points="84,64 86,60 88,63" fill="#831843" />
+            <text x="97" y="67" font-size="8.5" font-weight="bold" fill="#222">e<tspan font-size="6.5" dy="2">A</tspan></text>
+            <circle cx="42" cy="66" r="7" fill="#fbcfe8" stroke="#009fe3" stroke-width="1" />
+            <line x1="40" y1="62" x2="44" y2="70" stroke="#831843" stroke-width="1" />
+            <polygon points="42,72 46,72 45,68" fill="#831843" />
+            <text x="24" y="67" font-size="8.5" font-weight="bold" fill="#222">e<tspan font-size="6.5" dy="2">C</tspan></text>
+            <circle cx="65" cy="110" r="7" fill="#fbcfe8" stroke="#009fe3" stroke-width="1" />
+            <line x1="61" y1="110" x2="69" y2="110" stroke="#831843" stroke-width="1" />
+            <polygon points="68,108 71,110 68,112" fill="#831843" />
+            <text x="65" y="122" font-size="8.5" font-weight="bold" fill="#222" text-anchor="middle">e<tspan font-size="6.5" dy="2">B</tspan></text>
+
+            <!-- ĐƯỜNG DÂY 3 PHA NỐI SANG TẢI -->
+            <!-- Dây pha A: (65, 22) -> (250, 22) -->
+            <line x1="65" y1="22" x2="250" y2="22" stroke="#009fe3" stroke-width="1.8" />
+            <polygon points="150,20 154,22 150,24" fill="#009fe3" />
+            <text x="146" y="17" font-size="8.5" font-weight="bold" fill="#222">I<tspan font-size="6.5" dy="2">d</tspan></text>
+            <!-- Dây pha B: (110, 110) -> (110, 118) -> (285, 118) -> (285, 85) -->
+            <polyline points="110,110 110,118 285,118 285,85" fill="none" stroke="#009fe3" stroke-width="1.8" />
+            <polygon points="186,116 190,118 186,120" fill="#009fe3" />
+            <text x="182" y="130" font-size="8.5" font-weight="bold" fill="#222">I<tspan font-size="6.5" dy="2">d</tspan></text>
+            <!-- Dây pha C: (20, 110) -> (20, 140) -> (218, 140) -> (218, 85) -->
+            <polyline points="20,110 20,140 218,140 218,85" fill="none" stroke="#009fe3" stroke-width="1.8" />
+            <polygon points="126,138 130,140 126,142" fill="#009fe3" />
+            <text x="122" y="136" font-size="8.5" font-weight="bold" fill="#222">I<tspan font-size="6.5" dy="2">d</tspan></text>
+
+            <!-- ĐO ĐIỆN ÁP DÂY Ud -->
+            <line x1="162" y1="28" x2="162" y2="112" stroke="#009fe3" stroke-width="1" />
+            <polygon points="160,30 162,26 164,30" fill="#009fe3" />
+            <polygon points="160,110 162,114 164,110" fill="#009fe3" />
+            <text x="166" y="74" font-size="10.5" font-weight="bold" fill="#222">U<tspan font-size="7.5" dy="2">d</tspan></text>
+
+            <!-- TẢI TAM GIÁC BÊN PHẢI -->
+            <polygon points="250,22 218,85 285,85" fill="none" stroke="#009fe3" stroke-width="1.8" />
+            <circle cx="250" cy="22" r="2.2" fill="#009fe3" />
+            <circle cx="218" cy="85" r="2.2" fill="#009fe3" />
+            <circle cx="285" cy="85" r="2.2" fill="#009fe3" />
+            <text x="250" y="16" font-size="10" font-weight="bold" fill="#222" text-anchor="middle">A</text>
+            <text x="292" y="88" font-size="10" font-weight="bold" fill="#222">B</text>
+            <text x="207" y="88" font-size="10" font-weight="bold" fill="#222">C</text>
+            <text x="226" y="80" font-size="8.5" font-weight="bold" fill="#222">Y</text>
+            <!-- Dòng Ip trên tải -->
+            <polygon points="256,31 259,34 257,36" fill="#009fe3" />
+            <text x="261" y="34" font-size="8.5" font-weight="bold" fill="#222">I<tspan font-size="6.5" dy="2">p</tspan></text>
+            <polygon points="227,69 224,72 222,69" fill="#009fe3" />
+            <text x="214" y="66" font-size="8.5" font-weight="bold" fill="#222">I<tspan font-size="6.5" dy="2">p</tspan></text>
+            <polygon points="268,83 264,85 268,87" fill="#009fe3" />
+            <text x="268" y="96" font-size="8.5" font-weight="bold" fill="#222">I<tspan font-size="6.5" dy="2">p</tspan></text>
+            <!-- Tải ZA, ZB, ZC -->
+            <rect x="263" y="47" width="13" height="7" transform="rotate(-62 269.5 50.5)" fill="#bef264" stroke="#65a30d" stroke-width="1" />
+            <text x="274" y="52" font-size="8.5" font-weight="bold" fill="#222">Z<tspan font-size="6.5" dy="2">A</tspan></text>
+            <rect x="245" y="81.5" width="13" height="7" fill="#bef264" stroke="#65a30d" stroke-width="1" />
+            <text x="251" y="99" font-size="8.5" font-weight="bold" fill="#222" text-anchor="middle">Z<tspan font-size="6.5" dy="2">B</tspan></text>
+            <rect x="227" y="47" width="13" height="7" transform="rotate(62 233.5 50.5)" fill="#bef264" stroke="#65a30d" stroke-width="1" />
+            <text x="221" y="46" font-size="8.5" font-weight="bold" fill="#222">Z<tspan font-size="6.5" dy="2">C</tspan></text>
+            <!-- Đo Up của tải -->
+            <line x1="277" y1="18" x2="304" y2="68" stroke="#009fe3" stroke-width="1" />
+            <polygon points="275,20 278,16 280,19" fill="#009fe3" />
+            <polygon points="301,67 305,70 306,66" fill="#009fe3" />
+            <text x="296" y="45" font-size="10" font-weight="bold" fill="#222">U<tspan font-size="7.5" dy="2">p</tspan></text>
+          </svg>
+        </div>
+      `,
+      // Hình nguồn Y tải tam giác (Câu 44)
+      fig_c44: `
+        <div class="my-3 text-center flex justify-center">
+          <svg viewBox="0 0 310 155" class="max-w-full sm:max-w-md mx-auto rounded-xl border border-slate-200 p-2 bg-white shadow-sm" xmlns="http://www.w3.org/2000/svg" style="font-family: Arial, sans-serif;">
+            <!-- NGUỒN SAO BÊN TRÁI -->
+            <line x1="60" y1="72" x2="60" y2="24" stroke="#009fe3" stroke-width="1.8" />
+            <line x1="60" y1="72" x2="18" y2="108" stroke="#009fe3" stroke-width="1.8" />
+            <line x1="60" y1="72" x2="104" y2="108" stroke="#009fe3" stroke-width="1.8" />
+            <circle cx="60" cy="72" r="2.2" fill="#009fe3" />
+            <circle cx="60" cy="24" r="2.2" fill="#009fe3" />
+            <circle cx="104" cy="108" r="2.2" fill="#009fe3" />
+            <circle cx="18" cy="108" r="2.2" fill="#009fe3" />
+            <text x="60" y="16" font-size="10" font-weight="bold" fill="#222" text-anchor="middle">A</text>
+            <text x="110" y="112" font-size="10" font-weight="bold" fill="#222">B</text>
+            <text x="6" y="112" font-size="10" font-weight="bold" fill="#222">C</text>
+            <!-- Cuộn eA, eB, eC -->
+            <circle cx="60" cy="48" r="7" fill="#fbcfe8" stroke="#009fe3" stroke-width="1" />
+            <line x1="60" y1="52" x2="60" y2="44" stroke="#831843" stroke-width="1" />
+            <polygon points="58,45 60,42 62,45" fill="#831843" />
+            <text x="70" y="50" font-size="8.5" font-weight="bold" fill="#222">e<tspan font-size="6.5" dy="2">A</tspan></text>
+            <circle cx="82" cy="90" r="7" fill="#fbcfe8" stroke="#009fe3" stroke-width="1" />
+            <line x1="79" y1="87" x2="85" y2="93" stroke="#831843" stroke-width="1" />
+            <polygon points="86,90 87,95 82,94" fill="#831843" />
+            <text x="91" y="93" font-size="8.5" font-weight="bold" fill="#222">e<tspan font-size="6.5" dy="2">B</tspan></text>
+            <circle cx="38" cy="90" r="7" fill="#fbcfe8" stroke="#009fe3" stroke-width="1" />
+            <line x1="41" y1="87" x2="35" y2="93" stroke="#831843" stroke-width="1" />
+            <polygon points="38,94 33,95 34,90" fill="#831843" />
+            <text x="44" y="100" font-size="8.5" font-weight="bold" fill="#222">e<tspan font-size="6.5" dy="2">C</tspan></text>
+
+            <!-- ĐƯỜNG DÂY 3 PHA NỐI SANG TẢI -->
+            <!-- Dây pha A -->
+            <line x1="60" y1="24" x2="250" y2="24" stroke="#009fe3" stroke-width="1.8" />
+            <polygon points="150,22 154,24 150,26" fill="#009fe3" />
+            <text x="146" y="19" font-size="8.5" font-weight="bold" fill="#222">I<tspan font-size="6.5" dy="2">d</tspan></text>
+            <!-- Dây pha B -->
+            <polyline points="104,108 104,118 285,118 285,85" fill="none" stroke="#009fe3" stroke-width="1.8" />
+            <polygon points="186,116 190,118 186,120" fill="#009fe3" />
+            <text x="182" y="130" font-size="8.5" font-weight="bold" fill="#222">I<tspan font-size="6.5" dy="2">d</tspan></text>
+            <!-- Dây pha C -->
+            <polyline points="18,108 18,140 218,140 218,85" fill="none" stroke="#009fe3" stroke-width="1.8" />
+            <polygon points="126,138 130,140 126,142" fill="#009fe3" />
+            <text x="122" y="136" font-size="8.5" font-weight="bold" fill="#222">I<tspan font-size="6.5" dy="2">d</tspan></text>
+
+            <!-- ĐO ĐIỆN ÁP DÂY Ud -->
+            <line x1="162" y1="30" x2="162" y2="112" stroke="#009fe3" stroke-width="1" />
+            <polygon points="160,32 162,28 164,32" fill="#009fe3" />
+            <polygon points="160,110 162,114 164,110" fill="#009fe3" />
+            <text x="166" y="74" font-size="10.5" font-weight="bold" fill="#222">U<tspan font-size="7.5" dy="2">d</tspan></text>
+
+            <!-- TẢI TAM GIÁC BÊN PHẢI -->
+            <polygon points="250,24 218,85 285,85" fill="none" stroke="#009fe3" stroke-width="1.8" />
+            <circle cx="250" cy="24" r="2.2" fill="#009fe3" />
+            <circle cx="218" cy="85" r="2.2" fill="#009fe3" />
+            <circle cx="285" cy="85" r="2.2" fill="#009fe3" />
+            <text x="250" y="18" font-size="10" font-weight="bold" fill="#222" text-anchor="middle">A</text>
+            <text x="292" y="88" font-size="10" font-weight="bold" fill="#222">B</text>
+            <text x="207" y="88" font-size="10" font-weight="bold" fill="#222">C</text>
+            <text x="226" y="80" font-size="8.5" font-weight="bold" fill="#222">Y</text>
+            <!-- Dòng Ip trên tải -->
+            <polygon points="256,33 259,36 257,38" fill="#009fe3" />
+            <text x="261" y="36" font-size="8.5" font-weight="bold" fill="#222">I<tspan font-size="6.5" dy="2">p</tspan></text>
+            <polygon points="227,69 224,72 222,69" fill="#009fe3" />
+            <text x="214" y="66" font-size="8.5" font-weight="bold" fill="#222">I<tspan font-size="6.5" dy="2">p</tspan></text>
+            <polygon points="268,83 264,85 268,87" fill="#009fe3" />
+            <text x="268" y="96" font-size="8.5" font-weight="bold" fill="#222">I<tspan font-size="6.5" dy="2">p</tspan></text>
+            <!-- Tải ZA, ZB, ZC -->
+            <rect x="263" y="49" width="13" height="7" transform="rotate(-62 269.5 52.5)" fill="#bef264" stroke="#65a30d" stroke-width="1" />
+            <text x="274" y="54" font-size="8.5" font-weight="bold" fill="#222">Z<tspan font-size="6.5" dy="2">A</tspan></text>
+            <rect x="245" y="81.5" width="13" height="7" fill="#bef264" stroke="#65a30d" stroke-width="1" />
+            <text x="251" y="99" font-size="8.5" font-weight="bold" fill="#222" text-anchor="middle">Z<tspan font-size="6.5" dy="2">B</tspan></text>
+            <rect x="227" y="49" width="13" height="7" transform="rotate(62 233.5 52.5)" fill="#bef264" stroke="#65a30d" stroke-width="1" />
+            <text x="221" y="48" font-size="8.5" font-weight="bold" fill="#222">Z<tspan font-size="6.5" dy="2">C</tspan></text>
+            <!-- Đo Up của tải -->
+            <line x1="277" y1="20" x2="304" y2="70" stroke="#009fe3" stroke-width="1" />
+            <polygon points="275,22 278,18 280,21" fill="#009fe3" />
+            <polygon points="301,69 305,72 306,68" fill="#009fe3" />
+            <text x="296" y="47" font-size="10" font-weight="bold" fill="#222">U<tspan font-size="7.5" dy="2">p</tspan></text>
+          </svg>
+        </div>
+      `,
+      // Hình hệ thống điện quốc gia (áp dụng cho Câu 58, 59, 60, 61 và Câu 2 phần Đúng/Sai)
+      fig_grid_system: `
+        <div class="my-3 text-center flex justify-center">
+          <svg viewBox="0 0 450 200" class="max-w-full sm:max-w-lg mx-auto rounded-xl border border-slate-200 p-2 bg-white shadow-sm" xmlns="http://www.w3.org/2000/svg" style="font-family: Arial, sans-serif;">
+            <!-- Nhãn P1 và Máy phát P1 -->
+            <text x="40" y="28" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">P1</text>
+            <circle cx="40" cy="50" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+            <path d="M35,50 Q37.5,46 40,50 T45,50" fill="none" stroke="#16a34a" stroke-width="1.8" />
+
+            <!-- Đường trục ngang chính -->
+            <line x1="51" y1="50" x2="90" y2="50" stroke="#1e293b" stroke-width="1.8" />
+            
+            <!-- Trạm 22/220 kV -->
+            <text x="100" y="28" font-size="11" font-weight="bold" fill="#1e293b" text-anchor="middle">22/220 kV</text>
+            <circle cx="95" cy="50" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+            <circle cx="106" cy="50" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+
+            <line x1="117" y1="50" x2="169" y2="50" stroke="#1e293b" stroke-width="1.8" />
+
+            <!-- Trạm 220/110 kV -->
+            <text x="180" y="28" font-size="11" font-weight="bold" fill="#1e293b" text-anchor="middle">220/110 kV</text>
+            <circle cx="174" cy="50" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+            <circle cx="185" cy="50" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+
+            <!-- Đoạn ngã ba đến Trạm P2 -->
+            <line x1="196" y1="50" x2="285" y2="50" stroke="#1e293b" stroke-width="1.8" />
+
+            <!-- Trạm 22/110 kV -->
+            <text x="350" y="28" font-size="11" font-weight="bold" fill="#1e293b" text-anchor="middle">22/110 kV</text>
+            <circle cx="344" cy="50" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+            <circle cx="355" cy="50" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+
+            <line x1="366" y1="50" x2="409" y2="50" stroke="#1e293b" stroke-width="1.8" />
+
+            <!-- Nhãn P2 và Máy phát P2 -->
+            <text x="420" y="28" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">P2</text>
+            <circle cx="420" cy="50" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+            <path d="M415,50 Q417.5,46 420,50 T425,50" fill="none" stroke="#16a34a" stroke-width="1.8" />
+
+            <!-- Rẽ nhánh thẳng đứng đi xuống -->
+            <line x1="285" y1="50" x2="285" y2="78" stroke="#1e293b" stroke-width="1.8" />
+
+            <!-- Trạm 110/22 kV -->
+            <circle cx="285" cy="88" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+            <circle cx="285" cy="99" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+            <text x="302" y="96" font-size="11" font-weight="bold" fill="#1e293b">110/22 kV</text>
+
+            <line x1="285" y1="110" x2="285" y2="128" stroke="#1e293b" stroke-width="1.8" />
+
+            <!-- Trạm 22/0,4 kV -->
+            <circle cx="285" cy="138" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+            <circle cx="285" cy="149" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+            <text x="302" y="146" font-size="11" font-weight="bold" fill="#1e293b">22/0,4 kV</text>
+
+            <line x1="285" y1="160" x2="285" y2="170" stroke="#1e293b" stroke-width="1.8" />
+
+            <!-- Thanh cái hạ áp và tải mũi tên -->
+            <line x1="255" y1="170" x2="315" y2="170" stroke="#1e293b" stroke-width="2.2" />
+            <!-- 5 mũi tên tải đi xuống -->
+            <g stroke="#1e293b" stroke-width="1.5" fill="#1e293b">
+              <line x1="260" y1="170" x2="260" y2="184" />
+              <polygon points="258,183 260,187 262,183" />
+              <line x1="272" y1="170" x2="272" y2="184" />
+              <polygon points="270,183 272,187 274,183" />
+              <line x1="285" y1="170" x2="285" y2="184" />
+              <polygon points="283,183 285,187 287,183" />
+              <line x1="298" y1="170" x2="298" y2="184" />
+              <polygon points="296,183 298,187 300,183" />
+              <line x1="310" y1="170" x2="310" y2="184" />
+              <polygon points="308,183 310,187 312,183" />
+            </g>
+
+            <!-- CHÚ THÍCH BÊN DƯỚI BÊN TRÁI -->
+            <circle cx="28" cy="94" r="8" fill="none" stroke="#16a34a" stroke-width="1.6" />
+            <path d="M24,94 Q26,91 28,94 T32,94" fill="none" stroke="#16a34a" stroke-width="1.4" />
+            <text x="44" y="97" font-size="10.5" fill="#334155" font-weight="500">Nhà máy điện</text>
+
+            <circle cx="25" cy="118" r="8" fill="none" stroke="#16a34a" stroke-width="1.6" />
+            <circle cx="33" cy="118" r="8" fill="none" stroke="#16a34a" stroke-width="1.6" />
+            <text x="48" y="121" font-size="10.5" fill="#334155" font-weight="500">Trạm biến áp</text>
+          </svg>
+        </div>
+      `,
+      // Hình hệ thống điện quốc gia dành riêng cho Câu 2 phần Đúng/Sai (Thông số P2 là 10,5/110 kV)
+      fig_tf_grid_system: `
+        <div class="my-3 text-center flex justify-center">
+          <svg viewBox="0 0 450 200" class="max-w-full sm:max-w-lg mx-auto rounded-xl border border-slate-200 p-2 bg-white shadow-sm" xmlns="http://www.w3.org/2000/svg" style="font-family: Arial, sans-serif;">
+            <!-- Nhãn P1 và Máy phát P1 -->
+            <text x="40" y="28" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">P1</text>
+            <circle cx="40" cy="50" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+            <path d="M35,50 Q37.5,46 40,50 T45,50" fill="none" stroke="#16a34a" stroke-width="1.8" />
+
+            <!-- Đường trục ngang chính -->
+            <line x1="51" y1="50" x2="90" y2="50" stroke="#1e293b" stroke-width="1.8" />
+            
+            <!-- Trạm 22/220 kV -->
+            <text x="100" y="28" font-size="11" font-weight="bold" fill="#1e293b" text-anchor="middle">22/220 kV</text>
+            <circle cx="95" cy="50" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+            <circle cx="106" cy="50" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+
+            <line x1="117" y1="50" x2="169" y2="50" stroke="#1e293b" stroke-width="1.8" />
+
+            <!-- Trạm 220/110 kV -->
+            <text x="180" y="28" font-size="11" font-weight="bold" fill="#1e293b" text-anchor="middle">220/110 kV</text>
+            <circle cx="174" cy="50" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+            <circle cx="185" cy="50" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+
+            <!-- Đoạn ngã ba đến Trạm P2 -->
+            <line x1="196" y1="50" x2="285" y2="50" stroke="#1e293b" stroke-width="1.8" />
+
+            <!-- Trạm 10,5/110 kV (Đúng nguyên bản trong câu Đúng/Sai số 2) -->
+            <text x="350" y="28" font-size="11" font-weight="bold" fill="#1e293b" text-anchor="middle">10,5/110 kV</text>
+            <circle cx="344" cy="50" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+            <circle cx="355" cy="50" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+
+            <line x1="366" y1="50" x2="409" y2="50" stroke="#1e293b" stroke-width="1.8" />
+
+            <!-- Nhãn P2 và Máy phát P2 -->
+            <text x="420" y="28" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">P2</text>
+            <circle cx="420" cy="50" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+            <path d="M415,50 Q417.5,46 420,50 T425,50" fill="none" stroke="#16a34a" stroke-width="1.8" />
+
+            <!-- Rẽ nhánh thẳng đứng đi xuống -->
+            <line x1="285" y1="50" x2="285" y2="78" stroke="#1e293b" stroke-width="1.8" />
+
+            <!-- Trạm 110/22 kV -->
+            <circle cx="285" cy="88" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+            <circle cx="285" cy="99" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+            <text x="302" y="96" font-size="11" font-weight="bold" fill="#1e293b">110/22 kV</text>
+
+            <line x1="285" y1="110" x2="285" y2="128" stroke="#1e293b" stroke-width="1.8" />
+
+            <!-- Trạm 22/0,4 kV -->
+            <circle cx="285" cy="138" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+            <circle cx="285" cy="149" r="11" fill="none" stroke="#16a34a" stroke-width="2" />
+            <text x="302" y="146" font-size="11" font-weight="bold" fill="#1e293b">22/0,4 kV</text>
+
+            <line x1="285" y1="160" x2="285" y2="170" stroke="#1e293b" stroke-width="1.8" />
+
+            <!-- Thanh cái hạ áp và tải mũi tên -->
+            <line x1="255" y1="170" x2="315" y2="170" stroke="#1e293b" stroke-width="2.2" />
+            <g stroke="#1e293b" stroke-width="1.5" fill="#1e293b">
+              <line x1="260" y1="170" x2="260" y2="184" />
+              <polygon points="258,183 260,187 262,183" />
+              <line x1="272" y1="170" x2="272" y2="184" />
+              <polygon points="270,183 272,187 274,183" />
+              <line x1="285" y1="170" x2="285" y2="184" />
+              <polygon points="283,183 285,187 287,183" />
+              <line x1="298" y1="170" x2="298" y2="184" />
+              <polygon points="296,183 298,187 300,183" />
+              <line x1="310" y1="170" x2="310" y2="184" />
+              <polygon points="308,183 310,187 312,183" />
+            </g>
+
+            <!-- CHÚ THÍCH BÊN DƯỚI BÊN TRÁI -->
+            <circle cx="28" cy="94" r="8" fill="none" stroke="#16a34a" stroke-width="1.6" />
+            <path d="M24,94 Q26,91 28,94 T32,94" fill="none" stroke="#16a34a" stroke-width="1.4" />
+            <text x="44" y="97" font-size="10.5" fill="#334155" font-weight="500">Nhà máy điện</text>
+
+            <circle cx="25" cy="118" r="8" fill="none" stroke="#16a34a" stroke-width="1.6" />
+            <circle cx="33" cy="118" r="8" fill="none" stroke="#16a34a" stroke-width="1.6" />
+            <text x="48" y="121" font-size="10.5" fill="#334155" font-weight="500">Trạm biến áp</text>
+          </svg>
+        </div>
+      `,
+      // Hình câu 1 Đúng/Sai: Nguồn 3 pha nối 3 phụ tải (Chuyển sang SVG nội tại, không dùng link mạng ngoài)
+      fig_tf_load123: `
+        <div class="my-3 text-center flex justify-center">
+          <svg viewBox="0 0 520 220" class="max-w-full sm:max-w-lg mx-auto rounded-xl border border-slate-200 p-2 bg-white shadow-sm" xmlns="http://www.w3.org/2000/svg" style="font-family: Arial, sans-serif;">
+            <!-- NGUỒN 3 PHA BÊN TRÁI VỚI CÁC CUỘN DÂY NGUỒN VÀ DÂY TRUNG TÍNH -->
+            <circle cx="55" cy="30" r="11" fill="#fbcfe8" stroke="#009fe3" stroke-width="1.8" />
+            <line x1="50" y1="30" x2="60" y2="30" stroke="#831843" stroke-width="1.8" />
+            <polygon points="58,28 61,30 58,32" fill="#831843" />
+            <text x="74" y="34" font-size="13" font-weight="bold" fill="#1e293b">A</text>
+
+            <circle cx="55" cy="65" r="11" fill="#fbcfe8" stroke="#009fe3" stroke-width="1.8" />
+            <line x1="50" y1="65" x2="60" y2="65" stroke="#831843" stroke-width="1.8" />
+            <polygon points="58,63 61,65 58,67" fill="#831843" />
+            <text x="74" y="69" font-size="13" font-weight="bold" fill="#1e293b">B</text>
+
+            <circle cx="55" cy="100" r="11" fill="#fbcfe8" stroke="#009fe3" stroke-width="1.8" />
+            <line x1="50" y1="100" x2="60" y2="100" stroke="#831843" stroke-width="1.8" />
+            <polygon points="58,98 61,100 58,102" fill="#831843" />
+            <text x="74" y="104" font-size="13" font-weight="bold" fill="#1e293b">C</text>
+
+            <!-- DÂY TRUNG TÍNH O -->
+            <line x1="30" y1="30" x2="30" y2="135" stroke="#009fe3" stroke-width="2" />
+            <line x1="30" y1="65" x2="44" y2="65" stroke="#009fe3" stroke-width="2" />
+            <line x1="30" y1="100" x2="44" y2="100" stroke="#009fe3" stroke-width="2" />
+            <line x1="30" y1="30" x2="44" y2="30" stroke="#009fe3" stroke-width="2" />
+            <line x1="30" y1="135" x2="500" y2="135" stroke="#009fe3" stroke-width="2" />
+            <text x="74" y="145" font-size="13" font-weight="bold" fill="#1e293b">O</text>
+
+            <!-- CÁC ĐƯỜNG DÂY PHA A, B, C KÉO DÀI SANG PHẢI -->
+            <line x1="66" y1="30" x2="500" y2="30" stroke="#009fe3" stroke-width="2" />
+            <line x1="66" y1="65" x2="500" y2="65" stroke="#009fe3" stroke-width="2" />
+            <line x1="66" y1="100" x2="500" y2="100" stroke="#009fe3" stroke-width="2" />
+
+            <!-- PHỤ TẢI 1: NỐI HÌNH SAO KHÔNG DÂY TRUNG TÍNH (Y) -->
+            <!-- Các điểm trích từ đường dây -->
+            <circle cx="125" cy="30" r="3" fill="#009fe3" />
+            <circle cx="158" cy="65" r="3" fill="#009fe3" />
+            <circle cx="191" cy="100" r="3" fill="#009fe3" />
+            <!-- Dây nối xuống tải 1 -->
+            <line x1="125" y1="30" x2="125" y2="152" stroke="#009fe3" stroke-width="2" />
+            <line x1="158" y1="65" x2="158" y2="152" stroke="#009fe3" stroke-width="2" />
+            <line x1="191" y1="100" x2="191" y2="152" stroke="#009fe3" stroke-width="2" />
+            <!-- 3 điện trở tải 1 -->
+            <rect x="116" y="152" width="18" height="30" fill="#fef08a" stroke="#009fe3" stroke-width="1.8" />
+            <rect x="149" y="152" width="18" height="30" fill="#fef08a" stroke="#009fe3" stroke-width="1.8" />
+            <rect x="182" y="152" width="18" height="30" fill="#fef08a" stroke="#009fe3" stroke-width="1.8" />
+            <!-- Nối chung điểm cuối tạo thành hình sao không trung tính -->
+            <polyline points="125,182 125,195 191,195 191,182" fill="none" stroke="#009fe3" stroke-width="2" />
+            <line x1="158" y1="182" x2="158" y2="195" stroke="#009fe3" stroke-width="2" />
+            <text x="158" y="212" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">1</text>
+
+            <!-- PHỤ TẢI 2: NỐI HÌNH TAM GIÁC (Δ) -->
+            <circle cx="238" cy="30" r="3" fill="#009fe3" />
+            <circle cx="272" cy="65" r="3" fill="#009fe3" />
+            <circle cx="306" cy="100" r="3" fill="#009fe3" />
+            <!-- Dây nối xuống tải 2 -->
+            <line x1="238" y1="30" x2="238" y2="152" stroke="#009fe3" stroke-width="2" />
+            <line x1="272" y1="65" x2="272" y2="152" stroke="#009fe3" stroke-width="2" />
+            <line x1="306" y1="100" x2="306" y2="152" stroke="#009fe3" stroke-width="2" />
+            <!-- 3 cuộn dây/điện trở tải 2 -->
+            <rect x="230" y="152" width="16" height="30" fill="#fef08a" stroke="#009fe3" stroke-width="1.8" />
+            <rect x="264" y="152" width="16" height="30" fill="#fef08a" stroke="#009fe3" stroke-width="1.8" />
+            <rect x="298" y="152" width="16" height="30" fill="#fef08a" stroke="#009fe3" stroke-width="1.8" />
+            <!-- Nối chéo tam giác đầu nọ vào cuối kia -->
+            <circle cx="238" cy="152" r="2.5" fill="#009fe3" />
+            <circle cx="272" cy="152" r="2.5" fill="#009fe3" />
+            <circle cx="306" cy="152" r="2.5" fill="#009fe3" />
+            <line x1="238" y1="152" x2="267" y2="188" stroke="#009fe3" stroke-width="1.8" />
+            <polyline points="267,188 272,188 272,182" fill="none" stroke="#009fe3" stroke-width="1.8" />
+            <line x1="272" y1="152" x2="301" y2="188" stroke="#009fe3" stroke-width="1.8" />
+            <polyline points="301,188 306,188 306,182" fill="none" stroke="#009fe3" stroke-width="1.8" />
+            <polyline points="306,152 328,152 328,202 238,202 238,182" fill="none" stroke="#009fe3" stroke-width="1.8" />
+            <text x="272" y="217" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">2</text>
+
+            <!-- PHỤ TẢI 3: NỐI HÌNH SAO CÓ DÂY TRUNG TÍNH (Y0 - 3 BÓNG ĐÈN) -->
+            <circle cx="365" cy="30" r="3" fill="#009fe3" />
+            <circle cx="398" cy="65" r="3" fill="#009fe3" />
+            <circle cx="431" cy="100" r="3" fill="#009fe3" />
+            <!-- Dây nối xuống 3 bóng đèn -->
+            <line x1="365" y1="30" x2="365" y2="157" stroke="#009fe3" stroke-width="2" />
+            <line x1="398" y1="65" x2="398" y2="157" stroke="#009fe3" stroke-width="2" />
+            <line x1="431" y1="100" x2="431" y2="157" stroke="#009fe3" stroke-width="2" />
+            <!-- Ký hiệu bóng đèn tròn có dấu X -->
+            <g stroke="#009fe3" stroke-width="1.8" fill="#fef08a">
+              <circle cx="365" cy="170" r="13" />
+              <line x1="356" y1="161" x2="374" y2="179" />
+              <line x1="356" y1="179" x2="374" y2="161" />
+
+              <circle cx="398" cy="170" r="13" />
+              <line x1="389" y1="161" x2="407" y2="179" />
+              <line x1="389" y1="179" x2="407" y2="161" />
+
+              <circle cx="431" cy="170" r="13" />
+              <line x1="422" y1="161" x2="440" y2="179" />
+              <line x1="422" y1="179" x2="440" y2="161" />
+            </g>
+            <!-- Nối chung điểm cuối của 3 bóng đèn và kéo về dây trung tính O -->
+            <line x1="365" y1="183" x2="365" y2="195" stroke="#009fe3" stroke-width="2" />
+            <line x1="398" y1="183" x2="398" y2="195" stroke="#009fe3" stroke-width="2" />
+            <line x1="431" y1="183" x2="431" y2="195" stroke="#009fe3" stroke-width="2" />
+            <line x1="365" y1="195" x2="460" y2="195" stroke="#009fe3" stroke-width="2" />
+            <circle cx="398" cy="195" r="2.5" fill="#009fe3" />
+            <circle cx="431" cy="195" r="2.5" fill="#009fe3" />
+            <!-- Điểm trích dây trung tính O -->
+            <line x1="460" y1="195" x2="460" y2="135" stroke="#009fe3" stroke-width="2" />
+            <circle cx="460" cy="135" r="3.5" fill="#009fe3" />
+            <text x="398" y="214" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">3</text>
+          </svg>
+        </div>
+      `
+    };
+
+    // DỮ LIỆU ĐẦY ĐỦ CÂU HỎI TRẮC NGHIỆM ĐỀ CƯƠNG CÔNG NGHỆ 12 (ĐÃ CHUẨN HOÁ 100% THEO FILE)
+    const rawQuizData = [
+      // ================= CHỦ ĐỀ 1: KHÁI NIỆM & VAI TRÒ KĨ THUẬT ĐIỆN (CÂU 1 - 21) =================
+      {
+        id: "cn12_tn_1",
+        lesson: "c1",
+        lessonTitle: "Chủ đề 1: Kĩ thuật điện",
+        type: "single",
+        question: "Câu 1: Kĩ thuật điện là ngành",
+        options: [
+          { text: "kĩ thuật.", isCorrect: true },
+          { text: "chế tạo.", isCorrect: false },
+          { text: "gia công.", isCorrect: false },
+          { text: "tái chế.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_2",
+        lesson: "c1",
+        lessonTitle: "Chủ đề 1: Kĩ thuật điện",
+        type: "single",
+        question: "Câu 2: Công việc chính của kĩ thuật điện là",
+        options: [
+          { text: "nghiên cứu và chế tạo các loại dây dẫn phù hợp với từng vùng miền.", isCorrect: false },
+          { text: "nghiên cứu và ứng dụng công nghệ điện, điện từ,.... và sản xuất, truyền tải, phân phối và sử dụng điện năng", isCorrect: true },
+          { text: "thiết kế các mạng điện tối ưu, phù hợp với thời tiết khắc nghiệt.", isCorrect: false },
+          { text: "nghiên cứu và sử dụng vật liệu composite để làm dây dẫn điện; đề ra các giải pháp giúp tối ưu chi phí trong các thiết kế liên quan đến mạng điện.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_3",
+        lesson: "c1",
+        lessonTitle: "Chủ đề 1: Kĩ thuật điện",
+        type: "single",
+        question: "Câu 3: Các thành phần, thiết bị điện có bao nhiêu vai trò trong hệ thống điện?",
+        options: [
+          { text: "1.", isCorrect: false },
+          { text: "2.", isCorrect: false },
+          { text: "3.", isCorrect: true },
+          { text: "4.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_4",
+        lesson: "c1",
+        lessonTitle: "Chủ đề 1: Kĩ thuật điện",
+        type: "single",
+        question: "Câu 4: Mục tiêu của sản xuất điện là",
+        options: [
+          { text: "tạo ra điện từ việc chuyển đổi các dạng năng lượng khác nhau thành năng lượng điện.", isCorrect: true },
+          { text: "đưa điện từ nguồn (nhà máy điện) tới nơi tiêu thụ thông qua lưới điện.", isCorrect: false },
+          { text: "nghiên cứu, thiết kế, chế tạo, sử dụng các thiết bị điện và các bộ điều khiển để biến đổi điện năng thành các dạng năng lượng khác phục vụ sản xuất và đời sống.", isCorrect: false },
+          { text: "nghiên cứu, chế tạo các loại vật liệu composite thích hợp để làm dây dẫn điện.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_5",
+        lesson: "c1",
+        lessonTitle: "Chủ đề 1: Kĩ thuật điện",
+        type: "single",
+        question: "Câu 5: Mục tiêu của truyền tải và phân phối điện là",
+        options: [
+          { text: "hạn chế xảy ra các phản ứng hóa học trong quá trình sử dụng điện.", isCorrect: false },
+          { text: "tạo ra điện từ việc chuyển đổi các dạng năng lượng khác thành năng lượng điện.", isCorrect: false },
+          { text: "sử dụng các thiết bị và các bộ điều khiển để biến đổi điện năng thành các dạng năng lượng khác phục vụ cho sản xuất và đời sống.", isCorrect: false },
+          { text: "đưa điện từ nguồn (nhà máy điện) tới nơi tiêu thụ thông qua lưới điện.", isCorrect: true }
+        ]
+      },
+      {
+        id: "cn12_tn_6",
+        lesson: "c1",
+        lessonTitle: "Chủ đề 1: Kĩ thuật điện",
+        type: "single",
+        question: "Câu 6: Mục tiêu của sử dụng điện là",
+        options: [
+          { text: "sử dụng vật liệu polymer để tối ưu hóa chi phí sản phẩm, giảm thiểu các sự cố cháy, nổ khi vận hành các thiết bị điện.", isCorrect: false },
+          { text: "nghiên cứu, thiết kế, chế tạo, sử dụng các thiết bị điện và các bộ điều khiển để biến đổi điện năng thành các dạng năng lượng khác phục vụ cho sản xuất và đời sống.", isCorrect: true },
+          { text: "đưa điện từ nguồn (các hộ gia đình) tới nơi tiêu thụ thông qua lưới điện.", isCorrect: false },
+          { text: "tạo ra điện nhờ chuyển đổi các dạng năng lượng hình thành trong quá trình phản ứng hóa học.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_7",
+        lesson: "c1",
+        lessonTitle: "Chủ đề 1: Kĩ thuật điện",
+        type: "single",
+        question: "Câu 7: Vai trò của kĩ thuật điện trong sản xuất và đời sống là",
+        options: [
+          { text: "làm đòn bẩy giúp các ngành khoa học, công nghệ khác phát triển.", isCorrect: true },
+          { text: "phát triển khả năng thiết kế và vận hành mạch điện của các kĩ sư điện.", isCorrect: false },
+          { text: "hạn chế ô nhiễm rác thải nhựa.", isCorrect: false },
+          { text: "thúc đẩy phát triển nông nghiệp và dịch vụ.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_8",
+        lesson: "c1",
+        lessonTitle: "Chủ đề 1: Kĩ thuật điện",
+        type: "single",
+        question: "Câu 8: Phát biểu nào sau đây nêu đúng vai trò của kĩ thuật điện đối với nền sản xuất hiện đại?",
+        options: [
+          { text: "Cung cấp nguồn năng lượng cho máy móc, tự động hóa dây chuyền và nâng cao năng suất lao động.", isCorrect: true },
+          { text: "Thay thế hoàn toàn sự quản lý và tư duy chiến lược của con người trong doanh nghiệp.", isCorrect: false },
+          { text: "Chỉ phục vụ cho nhu cầu chiếu sáng gia đình, không ứng dụng trong sản xuất công nghiệp.", isCorrect: false },
+          { text: "Là ngành khoa học thuần túy lý thuyết, chưa có nhiều ứng dụng vào đời sống.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_9",
+        lesson: "c1",
+        lessonTitle: "Chủ đề 1: Kĩ thuật điện",
+        type: "single",
+        question: "Câu 9: Kĩ thuật điện có mấy vai trò chính đối với sản xuất?",
+        options: [
+          { text: "3.", isCorrect: true },
+          { text: "4.", isCorrect: false },
+          { text: "5.", isCorrect: false },
+          { text: "6.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_10",
+        lesson: "c1",
+        lessonTitle: "Chủ đề 1: Kĩ thuật điện",
+        type: "single",
+        question: "Câu 10: Kĩ thuật điện có mấy vai trò chính đối với đời sống?",
+        options: [
+          { text: "2.", isCorrect: false },
+          { text: "4.", isCorrect: false },
+          { text: "3.", isCorrect: true },
+          { text: "5.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_11",
+        lesson: "c1",
+        lessonTitle: "Chủ đề 1: Kĩ thuật điện",
+        type: "single",
+        question: "Câu 11: Vai trò của kĩ thuật điện đối với đời sống là",
+        options: [
+          { text: "cải thiện mức thu nhập bình quân của con người.", isCorrect: false },
+          { text: "thúc đẩy phát triển các sản phẩm chăn nuôi.", isCorrect: false },
+          { text: "tăng sản lượng cây trồng.", isCorrect: false },
+          { text: "nâng cao chất lượng cuộc sống con người.", isCorrect: true }
+        ]
+      },
+      {
+        id: "cn12_tn_12",
+        lesson: "c1",
+        lessonTitle: "Chủ đề 1: Kĩ thuật điện",
+        type: "single",
+        question: "Câu 12: Mục tiêu của sản xuất điện là",
+        options: [
+          { text: "tạo ra điện từ việc chuyển đổi các dạng năng lượng khác nhau thành năng lượng điện.", isCorrect: true },
+          { text: "đưa điện từ nguồn (nhà máy điện) tới nơi tiêu thụ thông qua lưới điện.", isCorrect: false },
+          { text: "nghiên cứu, thiết kế, chế tạo, sử dụng các thiết bị điện và các bộ điều khiển để biến đổi điện năng thành các dạng năng lượng khác phục vụ sản xuất và đời sống.", isCorrect: false },
+          { text: "nghiên cứu, chế tạo các loại vật liệu composite thích hợp để làm dây dẫn điện.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_13",
+        lesson: "c1",
+        lessonTitle: "Chủ đề 1: Kĩ thuật điện",
+        type: "single",
+        question: "Câu 13: Kĩ thuật viên thực hiện các nhiệm vụ",
+        options: [
+          { text: "nghiên cứu, tư vấn và thiết kế hệ thống điện, thiết bị điện.", isCorrect: false },
+          { text: "hỗ trợ nghiên cứu và phát triển các các thiết bị điện, thiết kế hệ thống điện và mạch điện có độ phức tạp thấp.", isCorrect: true },
+          { text: "vận hành và bảo trì các thiết bị điện.", isCorrect: false },
+          { text: "lắp đặt hệ thống điện cho các hộ gia đình.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_14",
+        lesson: "c1",
+        lessonTitle: "Chủ đề 1: Kĩ thuật điện",
+        type: "single",
+        question: "Câu 14: Sản phẩm của công việc thiết kế là các",
+        options: [
+          { text: "bản vẽ sơ đồ mạch điện.", isCorrect: false },
+          { text: "tài liệu kĩ thuật mô tả hệ thống điện.", isCorrect: false },
+          { text: "bản vẽ sơ đồ mạch điện và các tài liệu kĩ thuật mô tả hệ thống điện.", isCorrect: true },
+          { text: "bản vẽ sơ đồ mạch điện hoặc các tài liệu kĩ thuật mô tả hệ thống điện.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_15",
+        lesson: "c1",
+        lessonTitle: "Chủ đề 1: Kĩ thuật điện",
+        type: "single",
+        question: "Câu 15: Nhóm ngành nghề kĩ thuật điện nào chịu trách nhiệm nghiên cứu, tính toán và xây dựng bản vẽ thiết kế hệ thống?",
+        options: [
+          { text: "A. Lắp đặt điện.", isCorrect: false },
+          { text: "B. Vận hành điện.", isCorrect: false },
+          { text: "C. Thiết kế điện.", isCorrect: true },
+          { text: "D. Bảo dưỡng, sửa chữa điện.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_16",
+        lesson: "c1",
+        lessonTitle: "Chủ đề 1: Kĩ thuật điện",
+        type: "single",
+        question: "Câu 16: Nhiệm vụ của kĩ sư điện là",
+        options: [
+          { text: "nghiên cứu, tư vấn và thiết kế hệ thống điện, thiết bị điện.", isCorrect: true },
+          { text: "hỗ trợ nghiên cứu và phát triển các các thiết bị điện.", isCorrect: false },
+          { text: "thiết kế hệ thống điện và mạch điện có độ phức tạp thấp.", isCorrect: false },
+          { text: "lắp đặt hệ thống điện cho các hộ gia đình.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_17",
+        lesson: "c1",
+        lessonTitle: "Chủ đề 1: Kĩ thuật điện",
+        type: "single",
+        question: "Câu 17: Yêu cầu về trình độ đối với kĩ sư thiết kế điện là",
+        options: [
+          { text: "đại học ngành kĩ thuật điện.", isCorrect: true },
+          { text: "cao đẳng nghề kĩ thuật điện.", isCorrect: false },
+          { text: "trung cấp nghề kĩ thuật điện.", isCorrect: false },
+          { text: "Kĩ thuật viên.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_18",
+        lesson: "c1",
+        lessonTitle: "Chủ đề 1: Kĩ thuật điện",
+        type: "single",
+        question: "Câu 18: Yêu cầu về trình độ đối với kĩ thuật viên thiết kế điện là",
+        options: [
+          { text: "đại học ngành kĩ thuật điện.", isCorrect: false },
+          { text: "cao đẳng hoặc đại học ngành kĩ thuật điện.", isCorrect: false },
+          { text: "trung cấp hoặc cao đẳng nghề kĩ thuật điện.", isCorrect: true },
+          { text: "Tốt nghiệp THPT.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_19",
+        lesson: "c1",
+        lessonTitle: "Chủ đề 1: Kĩ thuật điện",
+        type: "single",
+        question: "Câu 19: Thiết kế điện là",
+        options: [
+          { text: "sử dụng các dây chuyền công nghệ hoặc máy và các công cụ hỗ trợ để tạo ra các thiết bị điện tử vật liệu, linh kiện ban đầu theo quy trình sản xuất.", isCorrect: false },
+          { text: "nghiên cứu, ứng dụng các kiến thức về kĩ thuật điện và các phương pháp tính toán để phân tích, thiết kế, lựa chọn vật liệu, thiết bị điện cho các hệ thống điện.", isCorrect: true },
+          { text: "thi công, lắp đặt, kế nối đường dây điện và thiết bị điện cho các hệ thống điện, công trình điện theo hồ sơ thiết kế, các quy chuẩn kĩ thuật và an toàn điện.", isCorrect: false },
+          { text: "các hoạt động nhằm duy trì chế độ làm việc bình thường của hệ thống điện đáp ứng các yêu cầu chất lượng, độ tin cậy và kinh tế.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_20",
+        lesson: "c1",
+        lessonTitle: "Chủ đề 1: Kĩ thuật điện",
+        type: "single",
+        question: "Câu 20: Yêu cầu quan trọng hàng đầu và bắt buộc đối với người lao động làm việc trong ngành kĩ thuật điện là",
+        options: [
+          { text: "Có năng khiếu vẽ mỹ thuật công nghiệp, có tính cẩn thận, ngăn nắp, có trình độ trung cấp trở lên.", isCorrect: false },
+          { text: "Tuyệt đối tuân thủ các quy tắc an toàn điện và sử dụng đầy đủ trang bị bảo hộ lao động.", isCorrect: true },
+          { text: "Thông thạo ít nhất ba ngoại ngữ trước khi hành nghề.", isCorrect: false },
+          { text: "Tự chế tạo được vật liệu bán dẫn tinh khiết.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_21",
+        lesson: "c1",
+        lessonTitle: "Chủ đề 1: Kĩ thuật điện",
+        type: "single",
+        question: "Câu 21: Lắp đặt điện là",
+        options: [
+          { text: "sử dụng các dây chuyền công nghệ hoặc máy và các công cụ hỗ trợ để tạo ra các thiết bị điện tử vật liệu, linh kiện ban đầu theo quy trình sản xuất.", isCorrect: false },
+          { text: "nghiên cứu, ứng dụng các kiến thức về kĩ thuật điện và các phương pháp tính toán để phân tích, thiết kế, lựa chọn vật liệu, thiết bị điện cho các hệ thống điện.", isCorrect: false },
+          { text: "thi công, lắp đặt, kế nối đường dây điện và thiết bị điện cho các hệ thống điện, công trình điện theo hồ sơ thiết kế, các quy chuẩn kĩ thuật và an toàn điện.", isCorrect: true },
+          { text: "các hoạt động nhằm duy trì chế độ làm việc bình thường của hệ thống điện đáp ứng các yêu cầu chất lượng, độ tin cậy và kinh tế.", isCorrect: false }
+        ]
+      },
+
+      // ================= CHỦ ĐỀ 2: MẠCH ĐIỆN XOAY CHIỀU BA PHA (CÂU 22 - 44) =================
+      {
+        id: "cn12_tn_22",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        question: "Câu 22: Mạch điện xoay chiều ba pha gồm:",
+        options: [
+          { text: "Nguồn điện ba pha và đường dây ba pha", isCorrect: false },
+          { text: "Nguồn điện ba pha và tải ba pha", isCorrect: false },
+          { text: "Đường dây ba pha và tải ba pha", isCorrect: false },
+          { text: "Nguồn ba pha, đường dây ba pha và tải ba pha", isCorrect: true }
+        ]
+      },
+      {
+        id: "cn12_tn_23",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        question: "Câu 23: Cấu tạo của máy phát điện xoay chiều ba pha gồm",
+        options: [
+          { text: "Cuộn dây và lõi thép", isCorrect: false },
+          { text: "Rotor và Stator", isCorrect: true },
+          { text: "Cam châm điện và dây quấn", isCorrect: false },
+          { text: "nguồn và tải ba pha.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_24",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        question: "Câu 24: Nối hình sao:",
+        options: [
+          { text: "Đầu pha này đối với cuối pha kia theo thứ tự pha.", isCorrect: false },
+          { text: "Ba điểm cuối của ba pha nối với nhau tạo thành điểm trung tính O", isCorrect: true },
+          { text: "Ba điểm đầu của ba pha nối với nhau tạo thành điểm trung tính O", isCorrect: false },
+          { text: "Đầu pha này nối với cuối pha kia không cần theo thứ tự pha.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_25",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        question: "Câu 25: Nối tam giác:",
+        options: [
+          { text: "Đầu pha này nối với cuối pha kia theo thứ tự pha", isCorrect: true },
+          { text: "Chính là cách nối dây của mạch ba pha không liên hệ", isCorrect: false },
+          { text: "Ba điểm cuối ba pha nối với nhau.", isCorrect: false },
+          { text: "Ba điểm đầu ba pha nối với nhau.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_26",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        question: "Câu 26: Nguồn điện ba pha được nối",
+        options: [
+          { text: "Nối hình sao", isCorrect: false },
+          { text: "Nối hình tam giác", isCorrect: false },
+          { text: "Nối hình sao có dây trung tính", isCorrect: false },
+          { text: "Nối hình sao, hình sao có dây trung tính và tam giác", isCorrect: true }
+        ]
+      },
+      {
+        id: "cn12_tn_27",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        diagramSvg: ORIGINAL_IMAGES.fig_c27_42,
+        question: "Câu 27. Quan sát sơ đồ mạch điện ba pha sau đây và cho biết mạch điện ba pha được nối theo kiểu gì?",
+        options: [
+          { text: "Nguồn nối hình sao (Y), tải hình tam giác (∆)", isCorrect: false },
+          { text: "Nối hình sao (Y) không dây trung tính", isCorrect: true },
+          { text: "Nối hình sao (Y) có dây trung tính OO’", isCorrect: false },
+          { text: "Không xác định", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_28",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        question: "Câu 28: Máy phát điện xoay chiều ba pha có mấy loại dây quấn?",
+        options: [
+          { text: "1", isCorrect: false },
+          { text: "2", isCorrect: false },
+          { text: "3", isCorrect: true },
+          { text: "4", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_29",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        question: "Câu 29: Máy phát điện xoay chiều ba pha có loại dây quấn nào sau đây?",
+        options: [
+          { text: "AX", isCorrect: false },
+          { text: "BY", isCorrect: false },
+          { text: "CZ", isCorrect: false },
+          { text: "AX, BY, CZ", isCorrect: true }
+        ]
+      },
+      {
+        id: "cn12_tn_30",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        question: "Câu 30. Một máy phát điện ba pha có điện áp mỗi dây quấn pha là 220V. Tính điện áp dây nếu biết nối hình sao?",
+        options: [
+          { text: "Ud = 220V", isCorrect: false },
+          { text: "Ud = 381,05V", isCorrect: true },
+          { text: "Ud = 127,02V", isCorrect: false },
+          { text: "Ud = 658,2V", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_31",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        question: "Câu 31: AX là kí hiệu của dây quấn nào trong máy phát điện xoay chiều ba pha?",
+        options: [
+          { text: "Dây quấn pha A", isCorrect: true },
+          { text: "Dây quấn pha B", isCorrect: false },
+          { text: "Dây quấn pha C", isCorrect: false },
+          { text: "Dây quấn của 1 trong ba pha A, B, C", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_32",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        question: "Câu 32: BY là kí hiệu của dây quấn nào trong máy phát điện xoay chiều ba pha?",
+        options: [
+          { text: "Dây quấn pha A", isCorrect: false },
+          { text: "Dây quấn pha B", isCorrect: true },
+          { text: "Dây quấn pha C", isCorrect: false },
+          { text: "Dây quấn của 1 trong ba pha A, B, C", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_33",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        question: "Câu 33: CZ là kí hiệu của dây quấn nào trong máy phát điện xoay chiều ba pha?",
+        options: [
+          { text: "Dây quấn pha A", isCorrect: false },
+          { text: "Dây quấn pha B", isCorrect: false },
+          { text: "Dây quấn pha C", isCorrect: true },
+          { text: "Dây quấn của 1 trong ba pha A, B, C", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_34",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        question: "Câu 34. Mạng điện gia đình em thường sử dụng nguồn điện nào? Trường hợp nào cần dùng nguồn điện ba pha?",
+        options: [
+          { text: "Gia đình dùng nguồn ba pha, còn nhà máy dùng nguồn một pha.", isCorrect: false },
+          { text: "Gia đình dùng nguồn một pha; nguồn ba pha dùng khi cần công suất lớn như trong nhà máy, xưởng sản xuất.", isCorrect: true },
+          { text: "Gia đình và nhà máy đều dùng nguồn điện một pha.", isCorrect: false },
+          { text: "Gia đình dùng nguồn điện một pha, còn trường học dùng nguồn điện ba pha vì nhiều lớp học tiêu thụ nhiều điện năng.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_35",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        question: "Câu 35: Đâu là cách nối nguồn điện ba pha hình sao?",
+        options: [
+          { text: "A.", isCorrect: true, customHtml: ORIGINAL_IMAGES.fig_opt_A },
+          { text: "B.", isCorrect: false, customHtml: ORIGINAL_IMAGES.fig_opt_B },
+          { text: "C.", isCorrect: false, customHtml: ORIGINAL_IMAGES.fig_opt_C },
+          { text: "D.", isCorrect: false, customHtml: ORIGINAL_IMAGES.fig_opt_D }
+        ]
+      },
+      {
+        id: "cn12_tn_36",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        question: "Câu 36: Đâu là cách nối nguồn điện ba pha hình sao có dây trung tính?",
+        options: [
+          { text: "A.", isCorrect: false, customHtml: ORIGINAL_IMAGES.fig_opt_A },
+          { text: "B.", isCorrect: true, customHtml: ORIGINAL_IMAGES.fig_opt_B },
+          { text: "C.", isCorrect: false, customHtml: ORIGINAL_IMAGES.fig_opt_C },
+          { text: "D.", isCorrect: false, customHtml: ORIGINAL_IMAGES.fig_opt_D }
+        ]
+      },
+      {
+        id: "cn12_tn_37",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        question: "Câu 37: Đâu là cách nối nguồn điện ba pha hình tam giác?",
+        options: [
+          { text: "A.", isCorrect: false, customHtml: ORIGINAL_IMAGES.fig_opt_A },
+          { text: "B.", isCorrect: false, customHtml: ORIGINAL_IMAGES.fig_opt_B },
+          { text: "C.", isCorrect: true, customHtml: ORIGINAL_IMAGES.fig_opt_C },
+          { text: "D.", isCorrect: false, customHtml: ORIGINAL_IMAGES.fig_opt_D }
+        ]
+      },
+      {
+        id: "cn12_tn_38",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        question: "Câu 38: Đâu là cách nối tải điện ba pha hình sao?",
+        options: [
+          { text: "A.", isCorrect: false, customHtml: ORIGINAL_IMAGES.fig_opt_A },
+          { text: "B.", isCorrect: false, customHtml: ORIGINAL_IMAGES.fig_opt_B },
+          { text: "C.", isCorrect: false, customHtml: ORIGINAL_IMAGES.fig_opt_C },
+          { text: "D.", isCorrect: true, customHtml: ORIGINAL_IMAGES.fig_opt_D }
+        ]
+      },
+      {
+        id: "cn12_tn_39",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        diagramSvg: ORIGINAL_IMAGES.fig_c39,
+        question: "Câu 39: Quan sát hình sau và cho biết, tải ba pha được nối theo cách nào?",
+        options: [
+          { text: "Nối hình sao", isCorrect: false },
+          { text: "Nối hình tam giác", isCorrect: true },
+          { text: "Nối hình sao có dây trung tính", isCorrect: false },
+          { text: "Không xác định", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_40",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        diagramSvg: ORIGINAL_IMAGES.fig_c40,
+        question: "Câu 40: Sơ đồ mạch điện ba pha được nối theo cách nào?",
+        options: [
+          { text: "nối hình sao", isCorrect: false },
+          { text: "nối hình tam giác", isCorrect: true },
+          { text: "nối hình sao có dây trung tính", isCorrect: false },
+          { text: "Không xác định", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_41",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        question: "Câu 41: Một tải ba pha gồm ba điện trở R = 10Ω, nối hình tam giác, đấu vào nguồn điện ba pha có Ud = 380V. Tính điện áp pha?",
+        options: [
+          { text: "Up = 380V", isCorrect: true },
+          { text: "Up = 658,2V", isCorrect: false },
+          { text: "Up = 219,4V", isCorrect: false },
+          { text: "Up = 220V", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_42",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        diagramSvg: ORIGINAL_IMAGES.fig_c27_42,
+        question: "Câu 42: Quan sát sơ đồ mạch điện ba pha sau đây và cho biết mạch điện ba pha được nối theo kiểu gì?",
+        options: [
+          { text: "Nguồn nối hình sao (Y), tải hình tam giác (∆)", isCorrect: false },
+          { text: "Nối hình sao (Y) không dây trung tính", isCorrect: true },
+          { text: "Nối hình sao (Y) có dây trung tính OO’", isCorrect: false },
+          { text: "Nối hình tam giác (∆)", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_43",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        question: "Câu 43: Một tải ba pha gồm ba điện trở R = 10Ω, nối hình tam giác, đấu vào nguồn điện ba pha có Ud = 380V. Tính điện áp pha?",
+        options: [
+          { text: "Up = 380V.", isCorrect: true },
+          { text: "Up = 658,2V.", isCorrect: false },
+          { text: "Up = 219,4V.", isCorrect: false },
+          { text: "Up = 220V.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_44",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "single",
+        diagramSvg: ORIGINAL_IMAGES.fig_c44,
+        question: "Câu 44: Quan sát sơ đồ mạch điện ba pha sau đây và cho biết mạch điện ba pha được nối theo kiểu gì?",
+        options: [
+          { text: "Nguồn nối hình sao (Y), tải hình tam giác (∆)", isCorrect: true },
+          { text: "Nối hình sao (Y) không dây trung tính", isCorrect: false },
+          { text: "Nối hình sao (Y) có dây trung tính OO’", isCorrect: false },
+          { text: "Nối hình tam giác (∆)", isCorrect: false }
+        ]
+      },
+
+      // ================= CHỦ ĐỀ 3: HỆ THỐNG ĐIỆN QUỐC GIA & SẢN XUẤT ĐIỆN (CÂU 45 - 69) =================
+      {
+        id: "cn12_tn_45",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        question: "Câu 45: Hệ thống điện quốc gia có mấy thành phần?",
+        options: [
+          { text: "1.", isCorrect: false },
+          { text: "2.", isCorrect: false },
+          { text: "3.", isCorrect: true },
+          { text: "4.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_46",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        question: "Câu 46 : Hệ thống điện quốc gia có thành phần nào sau đây",
+        options: [
+          { text: "Nguồn điện, các lưới điện, các thiết bị điện", isCorrect: false },
+          { text: "Các lưới điện, các thiết bị điện, các hộ tiêu thụ điện", isCorrect: false },
+          { text: "Các hộ tiêu thụ điện, các lưới điện, các thiết bị điện", isCorrect: false },
+          { text: "Nguồn điện, các lưới điện, các thiết bị tiêu thụ điện", isCorrect: true }
+        ]
+      },
+      {
+        id: "cn12_tn_47",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        question: "Câu 47: Hệ thống điện quốc gia là một thể thống nhất bao gồm ba thành phần chính liên kết với nhau là",
+        options: [
+          { text: "nguồn điện (các nhà máy điện), lưới điện và các hộ tiêu thụ điện trên toàn quốc.", isCorrect: true },
+          { text: "nhà máy thủy điện, cột điện cao thế và đồng hồ điện gia đình.", isCorrect: false },
+          { text: "trạm biến áp tăng áp, aptomat chống giật và máy móc.", isCorrect: false },
+          { text: "đường dây siêu cao áp và các đồ dùng điện gia đình.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_48",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        question: "Câu 48: Tại sao ở đầu ra nhà máy điện người ta phải dùng máy biến áp tăng áp lên 110–500 kV trước khi truyền tải?",
+        options: [
+          { text: "Để làm tăng tốc độ dòng điện truyền đi xa hơn, tiết kiệm dây dẫn, đảm bảo an toàn cho đường dây dẫn.", isCorrect: false },
+          { text: "Để giảm dòng điện trên dây, qua đó giảm mạnh tổn hao nhiệt và tiết kiệm kim loại làm dây.", isCorrect: true },
+          { text: "Để bảo đảm an toàn cho người dưới hành lang đường dây.", isCorrect: false },
+          { text: "Để biến dòng xoay chiều thành một chiều.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_49",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        question: "Câu 49: Hệ thống điện quốc gia có thành phần nào sau đây",
+        options: [
+          { text: "Nguồn điện, các lưới điện, các thiết bị điện", isCorrect: false },
+          { text: "Các lưới điện, các thiết bị điện, các hộ tiêu thụ điện", isCorrect: false },
+          { text: "Các hộ tiêu thụ điện, các lưới điện, các thiết bị điện", isCorrect: false },
+          { text: "Nguồn điện, các lưới điện, các hộ tiêu thụ điện", isCorrect: true }
+        ]
+      },
+      {
+        id: "cn12_tn_50",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        question: "Câu 50: Hệ thống điện quốc gia thực hiện mấy quá trình?",
+        options: [
+          { text: "1.", isCorrect: false },
+          { text: "2.", isCorrect: false },
+          { text: "3.", isCorrect: false },
+          { text: "4.", isCorrect: true }
+        ]
+      },
+      {
+        id: "cn12_tn_51",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        question: "Câu 51: Tải tiêu thụ là:",
+        options: [
+          { text: "Tập hợp các thiết bị và phần mềm để giám sát và điều khiển lưới điện", isCorrect: false },
+          { text: "Các thiết bị tiêu thụ điện, biến điện năng thành các dạng năng lượng khác", isCorrect: true },
+          { text: "Thiết bị điều phối và đảm bảo an toàn hệ thống truyền tải điện", isCorrect: false },
+          { text: "Các nhà máy điện có công suất phát điện khác nhau, phương pháp sản xuất điện khác nhau như thủy điện, nhiệt điện,... đấu nối vào lưới điện thông qua trạm biến áp", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_52",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        question: "Câu 52: Theo chức năng và cấp điện áp, lưới điện quốc gia được phân chia thành hai loại chính là",
+        options: [
+          { text: "lưới điện hạ áp và lưới điện vi mô.", isCorrect: false },
+          { text: "lưới truyền tải và lưới phân phối .", isCorrect: true },
+          { text: "lưới điện một pha và lưới điện ba pha.", isCorrect: false },
+          { text: "lưới điện phân xưởng và lưới điện đô thị.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_53",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        question: "Câu 53: Vai trò của lưới điện:",
+        options: [
+          { text: "Tạo ra điện năng cung cấp cho hệ thống điện quốc gia", isCorrect: false },
+          { text: "Kết nối, truyền tải và phân phối điện năng từ nguồn đến nơi tiêu thụ trong phạm vi toàn quốc", isCorrect: true },
+          { text: "Chuyển đổi cấp điện áp từ điện áp thấp lên điện áp cao", isCorrect: false },
+          { text: "Biến điện năng thành dạng năng lượng khác", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_54",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        question: "Câu 54: Vai trò của trạm biến áp:",
+        options: [
+          { text: "Tạo ra điện năng cung cấp cho hệ thống điện quốc gia", isCorrect: false },
+          { text: "Kết nối, truyền tải và phân phối điện năng từ nguồn đến nơi tiêu thụ trong phạm vi toàn quốc", isCorrect: false },
+          { text: "Chuyển đổi cấp điện áp từ điện áp thấp lên điện áp cao", isCorrect: true },
+          { text: "Biến điện năng thành dạng năng lượng khác", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_55",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        question: "Câu 55: Chức năng của đường dây truyền tải và phân phối",
+        options: [
+          { text: "Tạo ra điện năng cung cấp cho hệ thống điện quốc gia", isCorrect: false },
+          { text: "Kết nối nguồn điện, các trạm biến áp và tải tiêu thụ", isCorrect: true },
+          { text: "Chuyển đổi cấp điện áp từ điện áp thấp lên điện áp cao", isCorrect: false },
+          { text: "Biến điện năng thành dạng năng lượng khác", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_56",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        question: "Câu 56: Lưới điện truyền tải có cấp điện áp là bao nhiêu?",
+        options: [
+          { text: "Trên 110Kv", isCorrect: true },
+          { text: "Từ 110kV trở xuống", isCorrect: false },
+          { text: "Trên 220kV", isCorrect: false },
+          { text: "Từ 220kV trở xuống", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_57",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        question: "Câu 57: Lưới điện phân phối có cấp điện áp là bao nhiêu?",
+        options: [
+          { text: "Trên 110kV", isCorrect: false },
+          { text: "Từ 110kV trở xuống", isCorrect: true },
+          { text: "Trên 220kV", isCorrect: false },
+          { text: "Từ 220kV trở xuống", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_58",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        diagramSvg: ORIGINAL_IMAGES.fig_grid_system,
+        question: "Quan sát sơ đồ một hệ thống điện quốc gia ở hình trên, trả lời: Câu 58: Lưới truyền tải có cấp điện áp:",
+        options: [
+          { text: "22kV", isCorrect: false },
+          { text: "110kV", isCorrect: false },
+          { text: "220kV", isCorrect: true },
+          { text: "0,4kV", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_59",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        diagramSvg: ORIGINAL_IMAGES.fig_grid_system,
+        question: "Quan sát sơ đồ một hệ thống điện quốc gia ở hình trên, trả lời: Câu 59: Cho biết các cấp của lưới điện phân phối",
+        options: [
+          { text: "220kV, 110kV, 22kV", isCorrect: false },
+          { text: "220kV, 110kV", isCorrect: false },
+          { text: "10,5kV, 110kV, 22kV", isCorrect: false },
+          { text: "110kV, 22kV, 0,4kV", isCorrect: true }
+        ]
+      },
+      {
+        id: "cn12_tn_60",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        diagramSvg: ORIGINAL_IMAGES.fig_grid_system,
+        question: "Quan sát sơ đồ một hệ thống điện quốc gia ở hình trên, trả lời: Câu 60: Trạm tăng áp có trong sơ đồ:",
+        options: [
+          { text: "Từ 22kV lên 220kV và từ 22kV lên 110kV", isCorrect: true },
+          { text: "Từ 0,4 kV lên 22kV và từ 22kV lên 110kV", isCorrect: false },
+          { text: "Từ 0,4kV lên 110kV và từ 22kV lên 110kV", isCorrect: false },
+          { text: "Từ 0,4 kV lên 22kV và từ 22kV lên 110kV", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_61",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        diagramSvg: ORIGINAL_IMAGES.fig_grid_system,
+        question: "Quan sát sơ đồ một hệ thống điện quốc gia ở hình trên, trả lời: Câu 61: Trạm giảm áp có trong sơ đồ:",
+        options: [
+          { text: "22/220 kV ; 220/110 kV; 110/22 kV", isCorrect: false },
+          { text: "220/110 kV; 110/22 kV; 22/0,4 kV", isCorrect: true },
+          { text: "220/110kV, 22/110 kV; 10,5/110 kV", isCorrect: false },
+          { text: "220/110kV, 22/110 kV, 10,5/110 kV", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_62",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        diagramSvg: ORIGINAL_IMAGES.fig_grid_system,
+        question: "Quan sát sơ đồ một hệ thống điện quốc gia ở hình trên, trả lời: Câu 62: Tải tiêu thụ được nối với mạng điện",
+        options: [
+          { text: "Hạ áp 22 kV", isCorrect: false },
+          { text: "Tăng áp 110 kV", isCorrect: false },
+          { text: "Hạ áp 0,4 kV", isCorrect: true },
+          { text: "Tăng áp 220kV", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_63",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        question: "Câu 63: Nguồn năng lượng tái tạo được sử dụng để sản xuất điện năng là",
+        options: [
+          { text: "Than đá.", isCorrect: false },
+          { text: "Dầu mỏ.", isCorrect: false },
+          { text: "Sóng biển.", isCorrect: true },
+          { text: "Khí tự nhiên.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_64",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        question: "Câu 64: Nguồn năng lượng không tái tạo được sử dụng để sản xuất điện năng là",
+        options: [
+          { text: "Nước.", isCorrect: false },
+          { text: "Dầu mỏ.", isCorrect: true },
+          { text: "Mặt trời.", isCorrect: false },
+          { text: "Gió.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_65",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        question: "Câu 65: Sản xuất điện năng là quá trình chuyển đổi",
+        options: [
+          { text: "các dạng năng lượng thành năng lượng nhiệt.", isCorrect: false },
+          { text: "các dạng năng lượng thành năng lượng điện.", isCorrect: true },
+          { text: "năng lượng điện thành các dạng năng lượng khác.", isCorrect: false },
+          { text: "năng lượng nhiệt thành các dạng năng lượng khác.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_66",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        question: "Câu 66: Nguồn năng lượng nào sau đây thuộc nhóm năng lượng tái tạo đang được ưu tiên phát triển mạnh?",
+        options: [
+          { text: "A. Than đá.", isCorrect: false },
+          { text: "B. Dầu mỏ và khí đốt.", isCorrect: false },
+          { text: "C. Năng lượng gió và mặt trời.", isCorrect: true },
+          { text: "D. Uranium hạt nhân.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_67",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        question: "Câu 67: Quá trình chuyển hóa năng lượng chủ yếu trong một nhà máy nhiệt điện đốt than diễn ra tuần tự là",
+        options: [
+          { text: "Hóa năng than → Nhiệt năng → Động năng hơi nước → Cơ năng turbine → Điện năng.", isCorrect: true },
+          { text: "Điện năng → Cơ năng quay cánh quạt → Nhiệt năng → Quang năng.", isCorrect: false },
+          { text: "Thế năng nước → Động năng chảy → Hóa năng than → Điện năng.", isCorrect: false },
+          { text: "Quang năng → Nhiệt năng đốt than → Điện năng trực tiếp.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_68",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        question: "Câu 68: Ưu điểm của nhà máy điện hạt nhân là",
+        options: [
+          { text: "chi phí đầu tư, xây dựng thấp.", isCorrect: false },
+          { text: "không phụ thuộc vào tự nhiên và môi trường.", isCorrect: true },
+          { text: "chi phí vận hành và bảo trì thấp.", isCorrect: false },
+          { text: "an toàn cho hệ sinh thái và con người.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_69",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "single",
+        question: "Câu 69: Tại sao ở đầu ra nhà máy điện người ta phải dùng máy biến áp tăng áp lên 110–500 kV trước khi truyền tải?",
+        options: [
+          { text: "Để làm tăng tốc độ dòng điện truyền đi xa hơn, tiết kiệm dây dẫn, đảm bảo an toàn cho đường dây dẫn.", isCorrect: false },
+          { text: "Để giảm dòng điện trên dây, qua đó giảm mạnh tổn hao nhiệt và tiết kiệm kim loại làm dây.", isCorrect: true },
+          { text: "Để bảo đảm an toàn cho người dưới hành lang đường dây.", isCorrect: false },
+          { text: "Để biến dòng xoay chiều thành một chiều.", isCorrect: false }
+        ]
+      },
+
+      // ================= CHỦ ĐỀ 4: MẠNG ĐIỆN SẢN XUẤT QUY MÔ NHỎ (CÂU 70 - 77) =================
+      {
+        id: "cn12_tn_70",
+        lesson: "c4",
+        lessonTitle: "Chủ đề 4: Mạng điện sản xuất nhỏ",
+        type: "single",
+        question: "Câu 70. Trong một nhà máy sản xuất có nhiều phân xưởng khác nhau, mỗi phân xưởng đều được trang bị tủ điện phân phối nhánh riêng. Việc bố trí hệ thống như vậy mang lại ưu điểm chủ yếu nào so với việc chỉ sử dụng một tủ điện phân phối tổng duy nhất cho toàn nhà máy?",
+        options: [
+          { text: "Giúp giảm chi phí lắp đặt ban đầu cho hệ thống điện", isCorrect: false },
+          { text: "Giúp dễ quản lý, vận hành an toàn và giảm tổn thất điện năng", isCorrect: true },
+          { text: "Giúp tăng điện áp cung cấp cho các thiết bị", isCorrect: false },
+          { text: "Giúp toàn bộ nhà máy hoạt động chung trên một mạch điện duy nhất", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_71",
+        lesson: "c4",
+        lessonTitle: "Chủ đề 4: Mạng điện sản xuất nhỏ",
+        type: "single",
+        question: "Câu 71: Trong xưởng sản xuất, mạng điện động lực và mạng chiếu sáng thường được tách độc lập nhằm mục đích",
+        options: [
+          { text: "tiết kiệm tối đa số lượng dây cáp điện.", isCorrect: false },
+          { text: "khi động cơ lớn khởi động không làm sụt áp gây chập chờn hay tắt đèn, và khi sự cố cơ khí hệ thống đèn vẫn sáng.", isCorrect: true },
+          { text: "biến đổi dòng điện cấp cho máy móc thành điện một chiều và khi động cơ lớn khởi động không làm sụt áp gây chập chờn.", isCorrect: false },
+          { text: "loại bỏ hoàn toàn tổn thất trên dây trung tính và khi sự cố cơ khí hệ thống đèn vẫn sáng.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_72",
+        lesson: "c4",
+        lessonTitle: "Chủ đề 4: Mạng điện sản xuất nhỏ",
+        type: "single",
+        question: "Câu 72: Đâu là đặc điểm của mạng điện điện sản xuất quy mô nhỏ?",
+        options: [
+          { text: "Dùng 1 máy biến áp riêng hoặc lấy điện từ đường dây hạ áp có điện áp dây/pha là 380/220V", isCorrect: true },
+          { text: "Tải phân bố rải rác", isCorrect: false },
+          { text: "Mạng điện sản xuất quy mô nhỏ lấy điện từ lưới điện truyền tải", isCorrect: false },
+          { text: "Mạng điện cho thiết bị sản xuất và chiếu sáng hoạt động phụ thuộc lẫn nhau", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_73",
+        lesson: "c4",
+        lessonTitle: "Chủ đề 4: Mạng điện sản xuất nhỏ",
+        type: "single",
+        question: "Câu 73: Thiết bị điện nào vừa có chức năng đóng cắt bằng tay, vừa tự động bảo vệ khi quá tải hoặc ngắn mạch?",
+        options: [
+          { text: "A. Biến dòng CT.", isCorrect: false },
+          { text: "B. Aptomat .", isCorrect: true },
+          { text: "C. Đồng hồ vạn năng.", isCorrect: false },
+          { text: "D. Cầu dao đảo chiều.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_74",
+        lesson: "c4",
+        lessonTitle: "Chủ đề 4: Mạng điện sản xuất nhỏ",
+        type: "single",
+        question: "Câu 74: Trong mạng điện sản xuất quy mô nhỏ thiết bị nào được đặt ở phân xưởng sản xuất.",
+        options: [
+          { text: "Tủ điện phân phối tổng, tủ điện động lực, tủ điện chiếu sáng.", isCorrect: false },
+          { text: "Tủ điện phân phối nhánh, tủ điện động lực, tủ điện chiếu sáng.", isCorrect: true },
+          { text: "Trạm biến áp, tủ điện phân phối nhánh, tủ điện động lực.", isCorrect: false },
+          { text: "Tủ điện phân phối tổng, tủ điện phân phối nhánh, tủ điện động lực.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_75",
+        lesson: "c4",
+        lessonTitle: "Chủ đề 4: Mạng điện sản xuất nhỏ",
+        type: "single",
+        question: "Câu 75: Trạm biến áp có vai trò hạ áp từ lưới điện phân phối xuống",
+        options: [
+          { text: "A. 110 kV.", isCorrect: false },
+          { text: "B. 35 kV.", isCorrect: false },
+          { text: "C. 380 / 220 V.", isCorrect: true },
+          { text: "D. 12 / 24 V.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tn_76",
+        lesson: "c4",
+        lessonTitle: "Chủ đề 4: Mạng điện sản xuất nhỏ",
+        type: "single",
+        question: "Câu 76: Trong mạng điện sản xuất quy mô nhỏ thì tủ điện chiếu sáng có vai trò gì?",
+        options: [
+          { text: "Lấy điện từ đường dây hạ áp 380/220V của máy biến áp để phân phối cho các tủ điện phân phối nhánh.", isCorrect: false },
+          { text: "Lấy điện từ tủ điện phân phối tổng để phân phối tiếp cho các tủ động lực và tủ chiếu sáng trong phân xưởng.", isCorrect: false },
+          { text: "Lấy nguồn điện từ tủ phân phối nhánh để cấp cho tải tiêu thụ là các máy sản xuất trong phân xưởng.", isCorrect: false },
+          { text: "Lấy nguồn điện từ tủ phân phối nhánh để cấp cho hệ thống chiếu sáng của phân xưởng.", isCorrect: true }
+        ]
+      },
+      {
+        id: "cn12_tn_77",
+        lesson: "c4",
+        lessonTitle: "Chủ đề 4: Mạng điện sản xuất nhỏ",
+        type: "single",
+        question: "Câu 77: Theo quy trình vận hành mạng điện trong xưởng sản xuất, khi cần cắt điện để bảo trì, sửa chữa, người ta phải thực hiện theo chiều ngược lại với quá trình đóng điện. Lí do chính của việc tuân thủ trình tự này là gì?",
+        options: [
+          { text: "Để tiết kiệm thời gian thao tác và giảm bớt số lượng nhân công tham gia vận hành lưới điện.", isCorrect: false },
+          { text: "Để đảm bảo an toàn tuyệt đối, ngắt các thiết bị khi chúng đang ở trạng thái không tải, hạn chế tối đa hồ quang điện và bảo vệ thiết bị, con người.", isCorrect: true },
+          { text: "Để ưu tiên giữ lại nguồn điện cho khu vực chiếu sáng phục vụ quá trình kiểm tra sự cố.", isCorrect: false },
+          { text: "Để các thiết bị ở tủ điện tổng tự động xả hết điện tích trước khi ngắt hẳn nguồn điện cấp vào và hạn chế tối đa hồ quang điện bảo vệ thiết bị, con người.", isCorrect: false }
+        ]
+      },
+
+      // ================= CÁC CÂU TRẮC NGHIỆM ĐÚNG / SAI (CÂU 1 - 10) =================
+      {
+        id: "cn12_tf_1",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "tf",
+        diagramSvg: ORIGINAL_IMAGES.fig_tf_load123,
+        quote: "Câu 1: Cho sơ đồ mạch điện xoay chiều ba pha với các cách đấu nối phụ tải tiêu thụ ở Hình vẽ bên dưới. Nguồn điện ba pha có thông số định mức ghi Y/Δ-380/220 V, cấp điện cho 3 phụ tải:",
+        question: "Xác định tính Đúng hoặc Sai của mỗi khẳng định:",
+        items: [
+          { label: "a", text: "Thông số Y/Δ-380/220 V có nghĩa là nếu nguồn đấu hình sao thì điện áp dây là Ud=380 V, điện áp pha là Up=220 V.", isCorrect: true },
+          { label: "b", text: "Trong sơ đồ: Tải 1 đấu nối hình sao không trung tính (Y), Tải 2 đấu nối hình tam giác (Δ), Tải 3 đấu nối hình sao có dây trung tính (Y0).", isCorrect: true },
+          { label: "c", text: "Khi phụ tải đấu nối hình tam giác (Δ), điện áp đặt lên mỗi pha của tải bằng đúng điện áp pha của nguồn (Up_tải=Up_nguồn).", isCorrect: false },
+          { label: "d", text: "Nếu nguồn ba pha có Up=220 V, khi Tải 2 nối hình tam giác gồm ba điện trở thuần R=76Ω thì dòng điện dây chạy vào Tải 2 là Id≈8,66 A.", isCorrect: true }
+        ]
+      },
+      {
+        id: "cn12_tf_2",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "tf",
+        diagramSvg: ORIGINAL_IMAGES.fig_tf_grid_system,
+        quote: "Câu 2: Quan sát sơ đồ cấu trúc của một hệ thống điện quốc gia ở Hình vẽ dưới đây và trả lời các khẳng định sau:",
+        question: "Xác định tính Đúng hoặc Sai của mỗi khẳng định:",
+        items: [
+          { label: "a", text: "Sơ đồ thể hiện hệ thống có 2 nhà máy điện liên kết, các đường dây truyền tải và phân phối hoạt động ở 4 cấp điện áp khác nhau.", isCorrect: true },
+          { label: "b", text: "Trạm biến áp tăng áp trong sơ đồ thực hiện nâng điện áp từ cấp máy phát lên cấp cao áp 110 kV để truyền tải điện đi xa.", isCorrect: true },
+          { label: "c", text: "Phụ tải điện của xưởng công nghiệp nặng trong sơ đồ nhận điện trực tiếp từ lưới phân phối trung áp 22 kV hoặc qua trạm hạ áp.", isCorrect: true },
+          { label: "d", text: "Lưới điện phân phối trong sơ đồ bao gồm toàn bộ đường dây 110 kV và các đường dây siêu cao áp truyền tải.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tf_3",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "tf",
+        quote: "Câu 3: Một phụ tải ba pha đối xứng gồm ba điện trở thuần bằng nhau R=25Ω nối hình tam giác (Δ), được đấu vào lưới điện xoay chiều ba pha có điện áp dây Ud=220 V:",
+        question: "Xác định tính Đúng hoặc Sai của mỗi khẳng định:",
+        items: [
+          { label: "a", text: "Điện áp pha đặt lên mỗi điện trở của phụ tải có giá trị bằng Up=220 V.", isCorrect: true },
+          { label: "b", text: "Dòng điện pha chạy qua mỗi điện trở của phụ tải có giá trị là Ip=8,8 A.", isCorrect: true },
+          { label: "c", text: "Dòng điện dây chạy từ nguồn vào phụ tải đo được có giá trị là Id=8,8 A.", isCorrect: false },
+          { label: "d", text: "Tổng công suất tác dụng tiêu thụ của cả ba pha phụ tải là P=5808 W.", isCorrect: true }
+        ]
+      },
+      {
+        id: "cn12_tf_4",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "tf",
+        quote: "Câu 4: Một phụ tải điện ba pha gồm ba điện trở giống hệt nhau R=22Ω nối hình sao (Y) không có dây trung tính, đấu vào nguồn ba pha có điện áp dây Ud=380 V:",
+        question: "Xác định tính Đúng hoặc Sai của mỗi khẳng định:",
+        items: [
+          { label: "a", text: "Điện áp pha đặt lên mỗi điện trở của tải có giá trị xấp xỉ là Up≈220 V.", isCorrect: true },
+          { label: "b", text: "Dòng điện pha và dòng điện dây chạy trong mạch có giá trị bằng nhau và bằng Id=Ip=10 A.", isCorrect: true },
+          { label: "c", text: "Tổng công suất tác dụng mà cả ba pha phụ tải tiêu thụ từ nguồn điện là P=6600 W.", isCorrect: true },
+          { label: "d", text: "Nếu đột ngột dây pha A bị đứt, hai pha tải B và C còn lại sẽ lập tức ngừng hoạt động hoàn toàn.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tf_5",
+        lesson: "c4",
+        lessonTitle: "Chủ đề 4: Mạng điện sản xuất nhỏ",
+        type: "tf",
+        quote: "Câu 5: Một phân xưởng cơ khí nhỏ sử dụng trạm biến áp hạ áp cấp nguồn 380/220 V. Xưởng có 4 máy tiện cơ khí (công suất mỗi máy 4 kW, động cơ có nhãn ghi Y/Δ-380/220 V) và hệ thống đèn LED chiếu sáng xưởng tổng công suất 2 kW dùng điện 220 V:",
+        question: "Xác định tính Đúng hoặc Sai của mỗi khẳng định (Đáp án: Đ - Đ - S - Đ):",
+        items: [
+          { label: "a", text: "Để các máy tiện hoạt động đúng công suất thiết kế, các cuộn dây stato của động cơ phải được đấu theo hình sao (Y).", isCorrect: true },
+          { label: "b", text: "Hệ thống đèn LED chiếu sáng 220 V được đấu nối giữa một dây pha bất kì và dây trung tính của nguồn.", isCorrect: true },
+          { label: "c", text: "Tủ điện chiếu sáng và tủ điện động lực của máy tiện nên cấp chung từ một aptomat một pha duy nhất để tiết kiệm chi phí.", isCorrect: false },
+          { label: "d", text: "Khi kết thúc ca làm việc, thợ điện thao tác ngắt aptomat tủ phân phối tổng trước rồi mới ngắt từng máy tiện.", isCorrect: true }
+        ]
+      },
+      {
+        id: "cn12_tf_6",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "tf",
+        quote: "Câu 6: Về các khái niệm và mối quan hệ giữa điện áp pha và điện áp dây trong mạch ba pha:",
+        question: "Xác định tính Đúng hoặc Sai của mỗi khẳng định:",
+        items: [
+          { label: "a", text: "Điện áp pha (Up) là điện áp đo được giữa một dây pha và dây trung tính.", isCorrect: true },
+          { label: "b", text: "Điện áp dây (Ud) là điện áp đo được giữa hai dây pha bất kì trong lưới điện.", isCorrect: true },
+          { label: "c", text: "Khi phụ tải ba pha đối xứng được nối theo hình sao (Y), mối quan hệ giữa hai điện áp là Ud=Up.", isCorrect: false },
+          { label: "d", text: "Khi phụ tải ba pha đối xứng được nối theo hình tam giác (Δ), mối quan hệ giữa dòng điện dây và dòng điện pha là Id=Ip.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tf_7",
+        lesson: "c2",
+        lessonTitle: "Chủ đề 2: Mạch điện ba pha",
+        type: "tf",
+        quote: "Câu 7: Về vai trò và nguyên lí làm việc của dây trung tính trong mạch ba pha bốn dây:",
+        question: "Xác định tính Đúng hoặc Sai của mỗi khẳng định:",
+        items: [
+          { label: "a", text: "Dây trung tính giúp giữ cho điện áp trên các pha tải tương đối ổn định khi các pha tiêu thụ công suất không đều nhau.", isCorrect: true },
+          { label: "b", text: "Khi phụ tải ba pha tiêu thụ hoàn toàn đối xứng, dòng điện tổng chạy trên dây trung tính có giá trị bằng không (I0=0).", isCorrect: true },
+          { label: "c", text: "Nếu dây trung tính bị đứt khi tải không đối xứng, điện thế điểm trung tính O' bị trôi lệch làm cho pha tải nhẹ bị quá áp nguy hiểm.", isCorrect: true },
+          { label: "d", text: "Để bảo vệ an toàn chống đứt dây trung tính, người ta luôn lắp một cầu chì riêng biệt trực tiếp trên dây trung tính.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tf_8",
+        lesson: "c3",
+        lessonTitle: "Chủ đề 3: Hệ thống điện quốc gia",
+        type: "tf",
+        quote: "Câu 8: Nhận định nào sau đây đúng khi nói về đặc điểm của mạng điện hạ áp dùng trong sinh hoạt:",
+        question: "Xác định tính Đúng hoặc Sai của mỗi khẳng định (Đáp án: Đ - S - Đ - S):",
+        items: [
+          { label: "a", text: "Mạng điện hạ áp dùng trong sinh hoạt là mạng điện ba pha bốn dây có điện áp 380/110V cung cấp điện cho một khu dân cư hay các tòa nhà chung cư cao tầng.", isCorrect: true },
+          { label: "b", text: "Mạng điện hạ áp dùng trong sinh hoạt thông thường được cấp bằng một máy biến áp từ lưới điện phân phối 500kV hoặc 220kV", isCorrect: false },
+          { label: "c", text: "Tải điện sinh hoạt thường phân bố rải rác, có những tải điện ở xa máy biến áp, đặc biệt ở vùng nông thôn, miền núi, hải đảo", isCorrect: true },
+          { label: "d", text: "Tải điện sinh hoạt thường được chia làm hai loại: tải điện sinh hoạt cộng đồng và tải điện sinh hoạt gia đình.", isCorrect: false }
+        ]
+      },
+      {
+        id: "cn12_tf_9",
+        lesson: "c4",
+        lessonTitle: "Chủ đề 4: Mạng điện sản xuất nhỏ",
+        type: "tf",
+        quote: "Câu 9: Về nguyên tắc thiết kế và bố trí mạng điện trong phân xưởng sản xuất:",
+        question: "Xác định tính Đúng hoặc Sai của mỗi khẳng định:",
+        items: [
+          { label: "a", text: "Tách riêng mạng điện động lực và mạng điện chiếu sáng giúp tránh hiện tượng sụt áp làm đèn chớp nháy khi động cơ lớn khởi động.", isCorrect: true },
+          { label: "b", text: "Khi dây chuyền máy móc gặp sự cố cơ khí ngắt điện khẩn cấp, mạng đèn chiếu sáng độc lập vẫn sáng giúp công nhân thao tác an toàn.", isCorrect: true },
+          { label: "c", text: "Mạng điện động lực trong phân xưởng luôn ưu tiên sử dụng dòng xoay chiều một pha 220 V để chống rung cho khung máy.", isCorrect: false },
+          { label: "d", text: "Tủ phân phối nhánh có chức năng nhận điện từ tủ phân phối tổng để cấp nguồn riêng biệt cho từng cụm thiết bị máy móc.", isCorrect: true }
+        ]
+      },
+      {
+        id: "cn12_tf_10",
+        lesson: "c4",
+        lessonTitle: "Chủ đề 4: Mạng điện sản xuất nhỏ",
+        type: "tf",
+        quote: "Câu 10: Về quy trình an toàn vận hành đóng / cắt điện trong xưởng sản xuất:",
+        question: "Xác định tính Đúng hoặc Sai của mỗi khẳng định:",
+        items: [
+          { label: "a", text: "Quy trình đóng điện được thực hiện tuần tự từ nguồn ra phụ tải: Đóng tủ tổng → Tủ nhánh → Bật máy móc.", isCorrect: true },
+          { label: "b", text: "Quy trình cắt điện khi dừng sản xuất thực hiện theo chiều ngược lại: Tắt máy → Cắt tủ nhánh → Cắt tủ tổng.", isCorrect: true },
+          { label: "c", text: "Việc ngắt điện từ phụ tải về nguồn đảm bảo các khí cụ điện được cắt ở trạng thái không tải, hạn chế tối đa sinh hồ quang nguy hiểm.", isCorrect: true },
+          { label: "d", text: "Sau khi cắt cầu dao để sửa chữa đường dây, công nhân chỉ cần quan sát bằng mắt thường mà không cần treo biển cảnh báo an toàn.", isCorrect: false }
+        ]
+      }
+    ];
+
+    // BIẾN TRẠNG THÁI ỨNG DỤNG
+    let isShuffle = false;
+    let isStudyMode = false;
+    let isExamSubmitted = false;
+    let currentFilter = 'all';
+    let postSubmitFilter = 'all';
+    let userAnswers = {};
+    let currentQuestions = [];
+
+    // HÀM TRỘN MẢNG NGẪU NHIÊN
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    // MODAL THÔNG BÁO TỰ CHẾ
+    function showAppModal({ title, message, icon = '!', type = 'info', confirmText = 'Đồng ý', cancelText = null, onConfirm = null }) {
+      const modal = document.getElementById('appModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalMessage = document.getElementById('modalMessage');
+      const modalIconContainer = document.getElementById('modalIconContainer');
+      const modalActions = document.getElementById('modalActions');
+
+      modalTitle.textContent = title;
+      modalMessage.innerHTML = message;
+      modalIconContainer.textContent = icon;
+
+      if (type === 'danger') {
+        modalIconContainer.className = 'w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 bg-red-100 text-red-600 font-bold text-xl';
+      } else if (type === 'success') {
+        modalIconContainer.className = 'w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 bg-emerald-100 text-emerald-600 font-bold text-xl';
+      } else {
+        modalIconContainer.className = 'w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 bg-blue-100 text-blue-600 font-bold text-xl';
+      }
+
+      modalActions.innerHTML = '';
+
+      if (cancelText) {
+        const cancelBtn = document.createElement('button');
+        cancelBtn.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-300 text-slate-700 hover:bg-slate-100 transition';
+        cancelBtn.textContent = cancelText;
+        cancelBtn.onclick = () => {
+          modal.classList.add('hidden');
+        };
+        modalActions.appendChild(cancelBtn);
+      }
+
+      const confirmBtn = document.createElement('button');
+      confirmBtn.className = 'px-5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-blue-600 hover:bg-blue-700 text-white transition shadow-sm';
+      confirmBtn.textContent = confirmText;
+      confirmBtn.onclick = () => {
+        modal.classList.add('hidden');
+        if (onConfirm) onConfirm();
+      };
+      modalActions.appendChild(confirmBtn);
+
+      modal.classList.remove('hidden');
+    }
+
+    // XÂY DỰNG BỘ CÂU HỎI
+    function buildQuestionSet() {
+      let filtered = rawQuizData.filter(item => {
+        if (currentFilter === 'all') return true;
+        return item.lesson === currentFilter;
+      });
+
+      if (isShuffle) {
+        filtered = shuffleArray(filtered);
+      }
+
+      currentQuestions = filtered;
+      document.getElementById('totalQuestionsCount').textContent = currentQuestions.length;
+      updateProgress();
+      renderAllQuestions();
+    }
+
+    // CẬP NHẬT TIẾN ĐỘ
+    function updateProgress() {
+      let done = 0;
+      currentQuestions.forEach(q => {
+        if (q.type === 'single') {
+          if (userAnswers[q.id] !== undefined) done++;
+        } else if (q.type === 'tf') {
+          const allFilled = q.items.every(it => userAnswers[`${q.id}_${it.label}`] !== undefined);
+          if (allFilled) done++;
+        }
+      });
+      document.getElementById('progressCount').textContent = done;
+    }
+
+    // HIỂN THỊ DANH SÁCH CÂU HỎI
+    function renderAllQuestions() {
+      const container = document.getElementById('questionsContainer');
+      container.innerHTML = '';
+
+      function isQuestionFullyCorrect(q) {
+        if (q.type === 'single') {
+          return userAnswers[q.id] !== undefined && q.options[userAnswers[q.id]].isCorrect;
+        } else if (q.type === 'tf') {
+          return q.items.every(it => userAnswers[`${q.id}_${it.label}`] === it.isCorrect);
+        }
+        return false;
+      }
+
+      let correctQCount = 0;
+      let wrongQCount = 0;
+      currentQuestions.forEach(q => {
+        if (isQuestionFullyCorrect(q)) {
+          correctQCount++;
+        } else {
+          wrongQCount++;
+        }
+      });
+
+      const countAllEl = document.getElementById('countFilterAll');
+      const countWrongEl = document.getElementById('countFilterWrong');
+      const countCorrectEl = document.getElementById('countFilterCorrect');
+      if (countAllEl) countAllEl.textContent = currentQuestions.length;
+      if (countWrongEl) countWrongEl.textContent = wrongQCount;
+      if (countCorrectEl) countCorrectEl.textContent = correctQCount;
+
+      let questionsToDisplay = currentQuestions;
+      if (isExamSubmitted && postSubmitFilter === 'wrong') {
+        questionsToDisplay = currentQuestions.filter(q => !isQuestionFullyCorrect(q));
+      } else if (isExamSubmitted && postSubmitFilter === 'correct') {
+        questionsToDisplay = currentQuestions.filter(q => isQuestionFullyCorrect(q));
+      }
+
+      if (questionsToDisplay.length === 0) {
+        if (isExamSubmitted && postSubmitFilter === 'wrong') {
+          container.innerHTML = `<div class="p-8 text-center bg-white rounded-2xl shadow-sm text-emerald-600 font-bold text-sm">🎉 Xuất sắc! Bạn không làm sai câu nào trong bài thi.</div>`;
+        } else if (isExamSubmitted && postSubmitFilter === 'correct') {
+          container.innerHTML = `<div class="p-8 text-center bg-white rounded-2xl shadow-sm text-red-600 font-bold text-sm">Chưa có câu nào làm đúng trong bộ lọc này.</div>`;
+        } else {
+          container.innerHTML = `<div class="p-8 text-center bg-white rounded-2xl shadow-sm text-slate-500 text-sm">Không tìm thấy câu hỏi phù hợp.</div>`;
+        }
+        return;
+      }
+
+      const letters = ['A', 'B', 'C', 'D'];
+
+      questionsToDisplay.forEach((q) => {
+        const card = document.createElement('div');
+        card.id = `card_${q.id}`;
+        
+        const isCorrect = isQuestionFullyCorrect(q);
+        let borderHighlightClass = "border-slate-200";
+        if (isExamSubmitted && !isStudyMode) {
+          borderHighlightClass = isCorrect ? "border-emerald-300 ring-1 ring-emerald-200" : "border-red-300 ring-1 ring-red-200";
+        }
+        card.className = `bg-white border ${borderHighlightClass} rounded-2xl p-4 sm:p-6 shadow-sm transition hover:shadow-md`;
+
+        const originalIndex = currentQuestions.findIndex(item => item.id === q.id);
+
+        let statusTag = '';
+        if (isExamSubmitted && !isStudyMode) {
+          statusTag = isCorrect 
+            ? `<span class="inline-flex items-center bg-emerald-100 text-emerald-800 text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-md whitespace-nowrap">✓ Đúng</span>`
+            : `<span class="inline-flex items-center bg-red-100 text-red-700 text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-md whitespace-nowrap">⚠️ Làm sai</span>`;
+        }
+
+        let html = `
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-3 border-b border-slate-100 pb-2.5">
+            <div class="flex flex-wrap items-center gap-1.5 max-w-full">
+              <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-2 py-0.5 sm:py-1 rounded-md">
+                ${q.lessonTitle}
+              </span>
+              ${statusTag}
+            </div>
+            <span class="text-[11px] sm:text-xs font-bold text-slate-400 whitespace-nowrap">
+              Câu ${originalIndex + 1}/${currentQuestions.length} • ${q.type === 'single' ? '4 Lựa chọn' : 'Đúng / Sai'}
+            </span>
+          </div>
+        `;
+
+        if (q.quote) {
+          html += `
+            <div class="mb-3 bg-slate-100 border-l-4 border-blue-500 p-2.5 sm:p-3 rounded-r-xl text-xs sm:text-sm text-slate-700 italic leading-relaxed whitespace-pre-line">
+              ${q.quote}
+            </div>
+          `;
+        }
+
+        if (q.diagramSvg) {
+          html += q.diagramSvg;
+        }
+
+        html += `<p class="font-bold text-slate-900 text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed">${q.question}</p>`;
+
+        const isAnswerRevealed = isExamSubmitted || isStudyMode;
+
+        // DẠNG TRẮC NGHIỆM ĐƠN
+        if (q.type === 'single') {
+          html += `<div class="space-y-2 sm:space-y-2.5" id="opt_container_${q.id}">`;
+
+          q.options.forEach((opt, optIndex) => {
+            const isChecked = userAnswers[q.id] === optIndex;
+            let labelClass = "border-slate-200 hover:border-slate-300 hover:bg-slate-50";
+            let textClass = "text-slate-700 font-medium";
+            let badgeHtml = "";
+
+            if (isAnswerRevealed) {
+              if (opt.isCorrect) {
+                textClass = "text-emerald-800 font-bold";
+                labelClass = "border-emerald-500 bg-emerald-50/80 ring-1 ring-emerald-400";
+                badgeHtml = `<span class="self-end sm:self-center sm:ml-auto text-[10px] sm:text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">✓ Đáp án đúng</span>`;
+              } else if (isChecked && !opt.isCorrect) {
+                textClass = "text-red-700 font-bold";
+                labelClass = "border-red-500 bg-red-50/80 ring-1 ring-red-400";
+                badgeHtml = `<span class="self-end sm:self-center sm:ml-auto text-[10px] sm:text-xs font-bold text-red-700 bg-red-100 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">✗ Bạn chọn sai</span>`;
+              } else {
+                textClass = "text-slate-500";
+                labelClass = "border-slate-200 bg-slate-50/50 opacity-70";
+              }
+            } else if (isChecked) {
+              labelClass = "border-sky-500 bg-sky-50 ring-2 ring-sky-300";
+              textClass = "text-sky-900 font-bold";
+            }
+
+            const customOptionContent = opt.customHtml ? opt.customHtml : '';
+
+            html += `
+              <label class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-xl border ${labelClass} cursor-pointer transition select-none">
+                <div class="flex items-start gap-2.5 flex-1 min-w-0">
+                  <input type="radio" 
+                         name="rad_${q.id}" 
+                         value="${optIndex}" 
+                         ${isChecked ? 'checked' : ''}
+                         ${isExamSubmitted && !isStudyMode ? 'disabled' : ''}
+                         class="mt-0.5 sm:mt-0 w-4 h-4 shrink-0 text-sky-600 focus:ring-sky-500 cursor-pointer"
+                         onchange="selectSingleOption('${q.id}', ${optIndex})">
+                  <div class="text-xs sm:text-sm ${textClass} leading-relaxed">
+                    <span class="font-extrabold mr-1 text-slate-800">${letters[optIndex]}.</span>${opt.text}
+                    ${customOptionContent}
+                  </div>
+                </div>
+                ${badgeHtml}
+              </label>
+            `;
+          });
+
+          html += `</div>`;
+          html += `
+            <div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
+              <div id="msg_${q.id}" class="text-[11px] sm:text-xs font-bold"></div>
+            </div>
+          `;
+
+        // DẠNG ĐÚNG / SAI
+        } else if (q.type === 'tf') {
+          html += `<div class="space-y-2.5 sm:space-y-3" id="tf_container_${q.id}">`;
+
+          q.items.forEach(it => {
+            const userChoice = userAnswers[`${q.id}_${it.label}`];
+            let itemTextClass = "text-slate-800 font-medium";
+            let rowBorderClass = "border-slate-200 bg-slate-50/80";
+
+            const isTrueActive = userChoice === true;
+            const isFalseActive = userChoice === false;
+
+            let trueBtnClass = "bg-white text-slate-700 border-slate-300 hover:bg-slate-100";
+            let falseBtnClass = "bg-white text-slate-700 border-slate-300 hover:bg-slate-100";
+            let statusFeedback = "";
+
+            if (!isAnswerRevealed) {
+              if (isTrueActive) {
+                trueBtnClass = "bg-sky-500 text-white border-sky-600 shadow-sm ring-2 ring-sky-300 font-bold";
+              }
+              if (isFalseActive) {
+                falseBtnClass = "bg-sky-500 text-white border-sky-600 shadow-sm ring-2 ring-sky-300 font-bold";
+              }
+            } else {
+              if (it.isCorrect) {
+                trueBtnClass = "bg-emerald-600 text-white border-emerald-600 font-bold ring-2 ring-emerald-300";
+                if (isFalseActive) {
+                  falseBtnClass = "bg-red-500 text-white border-red-500 font-bold ring-2 ring-red-300";
+                  rowBorderClass = "border-red-300 bg-red-50/40";
+                  statusFeedback = `<span class="block sm:inline text-[11px] sm:text-xs font-bold text-red-600 sm:ml-2 mt-0.5 sm:mt-0">(Bạn chọn Sai ✗ - Chuẩn: Đúng)</span>`;
+                } else if (isTrueActive) {
+                  rowBorderClass = "border-emerald-300 bg-emerald-50/40";
+                  statusFeedback = `<span class="block sm:inline text-[11px] sm:text-xs font-bold text-emerald-600 sm:ml-2 mt-0.5 sm:mt-0">(Chính xác ✓)</span>`;
+                }
+              } else {
+                falseBtnClass = "bg-emerald-600 text-white border-emerald-600 font-bold ring-2 ring-emerald-300";
+                if (isTrueActive) {
+                  trueBtnClass = "bg-red-500 text-white border-red-500 font-bold ring-2 ring-red-300";
+                  rowBorderClass = "border-red-300 bg-red-50/40";
+                  statusFeedback = `<span class="block sm:inline text-[11px] sm:text-xs font-bold text-red-600 sm:ml-2 mt-0.5 sm:mt-0">(Bạn chọn Đúng ✗ - Chuẩn: Sai)</span>`;
+                } else if (isFalseActive) {
+                  rowBorderClass = "border-emerald-300 bg-emerald-50/40";
+                  statusFeedback = `<span class="block sm:inline text-[11px] sm:text-xs font-bold text-emerald-600 sm:ml-2 mt-0.5 sm:mt-0">(Chính xác ✓)</span>`;
+                }
+              }
+            }
+
+            html += `
+              <div class="p-2.5 sm:p-3 rounded-xl border ${rowBorderClass} flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 transition" id="row_${q.id}_${it.label}">
+                <div class="text-xs sm:text-sm flex-1 ${itemTextClass} leading-relaxed">
+                  <span class="font-extrabold uppercase mr-1 text-slate-700">${it.label})</span> ${it.text}
+                  ${statusFeedback}
+                </div>
+                
+                <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
+                  <button type="button" 
+                          onclick="selectTFOption('${q.id}', '${it.label}', true)"
+                          ${isExamSubmitted && !isStudyMode ? 'disabled' : ''}
+                          class="px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-lg text-xs font-bold transition border ${trueBtnClass} ${isExamSubmitted && !isStudyMode ? 'cursor-default' : ''}">
+                    Đúng
+                  </button>
+                  <button type="button" 
+                          onclick="selectTFOption('${q.id}', '${it.label}', false)"
+                          ${isExamSubmitted && !isStudyMode ? 'disabled' : ''}
+                          class="px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-lg text-xs font-bold transition border ${falseBtnClass} ${isExamSubmitted && !isStudyMode ? 'cursor-default' : ''}">
+                    Sai
+                  </button>
+                </div>
+              </div>
+            `;
+          });
+
+          html += `</div>`;
+          html += `
+            <div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
+              <div id="msg_${q.id}" class="text-[11px] sm:text-xs font-bold"></div>
+            </div>
+          `;
+        }
+
+        card.innerHTML = html;
+        container.appendChild(card);
+      });
+
+      if (isExamSubmitted) {
+        questionsToDisplay.forEach(q => {
+          if (q.type === 'single') checkSingleAnswer(q.id);
+          else if (q.type === 'tf') checkTFAnswer(q.id);
+        });
+      }
+    }
+
+    // BỘ LỌC KẾT QUẢ
+    window.setPostSubmitFilter = function(filterMode) {
+      postSubmitFilter = filterMode;
+
+      const btnAll = document.getElementById('filterAllQuestionsBtn');
+      const btnWrong = document.getElementById('filterWrongQuestionsBtn');
+      const btnCorrect = document.getElementById('filterCorrectQuestionsBtn');
+
+      const activeClass = "bg-slate-800 text-white";
+      const inactiveAll = "text-slate-700 hover:bg-slate-100";
+      const inactiveWrong = "text-red-600 hover:bg-red-50";
+      const inactiveCorrect = "text-emerald-600 hover:bg-emerald-50";
+
+      btnAll.className = `px-3 py-1 font-bold rounded-md transition ${filterMode === 'all' ? activeClass : inactiveAll}`;
+      btnWrong.className = `px-3 py-1 font-bold rounded-md transition ${filterMode === 'wrong' ? activeClass : inactiveWrong}`;
+      btnCorrect.className = `px-3 py-1 font-bold rounded-md transition ${filterMode === 'correct' ? activeClass : inactiveCorrect}`;
+
+      renderAllQuestions();
+      window.scrollTo({ top: 100, behavior: 'smooth' });
+    };
+
+    // CHỌN PHƯƠNG ÁN ĐƠN
+    window.selectSingleOption = function(qId, optIdx) {
+      if (isExamSubmitted && !isStudyMode) return;
+      userAnswers[qId] = optIdx;
+      updateProgress();
+      renderAllQuestions();
+    };
+
+    // CHỌN PHƯƠNG ÁN ĐÚNG / SAI
+    window.selectTFOption = function(qId, label, val) {
+      if (isExamSubmitted && !isStudyMode) return;
+      userAnswers[`${qId}_${label}`] = val;
+      updateProgress();
+
+      if (!isExamSubmitted && !isStudyMode) {
+        const row = document.getElementById(`row_${qId}_${label}`);
+        if (row) {
+          const btns = row.querySelectorAll('button');
+          if (val === true) {
+            btns[0].className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition border bg-sky-500 text-white border-sky-600 shadow-sm ring-2 ring-sky-300';
+            btns[1].className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition border bg-white text-slate-700 border-slate-300 hover:bg-slate-100';
+          } else {
+            btns[0].className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition border bg-white text-slate-700 border-slate-300 hover:bg-slate-100';
+            btns[1].className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition border bg-sky-500 text-white border-sky-600 shadow-sm ring-2 ring-sky-300';
+          }
+        }
+      } else {
+        renderAllQuestions();
+      }
+    };
+
+    // CHẤM ĐIỂM CÂU ĐƠN
+    function checkSingleAnswer(qId) {
+      const q = currentQuestions.find(item => item.id === qId);
+      if (!q) return;
+
+      const chosenIdx = userAnswers[qId];
+      const msg = document.getElementById(`msg_${qId}`);
+      if (!msg) return;
+
+      if (chosenIdx === undefined) {
+        msg.className = "text-xs font-bold text-amber-600";
+        msg.textContent = "⚠️ Bạn chưa chọn đáp án cho câu này.";
+      } else if (q.options[chosenIdx].isCorrect) {
+        msg.className = "text-xs font-bold text-emerald-600";
+        msg.textContent = "✓ Chính xác!";
+      } else {
+        msg.className = "text-xs font-bold text-red-600";
+        msg.textContent = "✗ Chưa đúng! Hãy đối chiếu với đáp án chuẩn (Xanh lá).";
+      }
+    }
+
+    // CHẤM ĐIỂM CÂU ĐÚNG / SAI
+    function checkTFAnswer(qId) {
+      const q = currentQuestions.find(item => item.id === qId);
+      if (!q) return;
+
+      const msg = document.getElementById(`msg_${qId}`);
+      if (!msg) return;
+
+      let correctCount = 0;
+      let unanswered = 0;
+
+      q.items.forEach(it => {
+        const userChoice = userAnswers[`${qId}_${it.label}`];
+        if (userChoice === undefined) {
+          unanswered++;
+        } else if (userChoice === it.isCorrect) {
+          correctCount++;
+        }
+      });
+
+      if (unanswered > 0) {
+        msg.className = "text-xs font-bold text-amber-600";
+        msg.textContent = `⚠️ Bạn còn ${unanswered} ý chưa chọn.`;
+      } else if (correctCount === 4) {
+        msg.className = "text-xs font-bold text-emerald-600";
+        msg.textContent = `✓ Xuất sắc! Bạn làm đúng 4/4 ý.`;
+      } else {
+        msg.className = "text-xs font-bold text-red-600";
+        msg.textContent = `✗ Bạn làm đúng ${correctCount}/4 ý. Hãy xem lại các ý bị tô Đỏ.`;
+      }
+    }
+
+    // KHỞI TẠO VÀ GẮN SỰ KIỆN TOÀN TRANG
+    window.addEventListener('DOMContentLoaded', () => {
+      const startScreen = document.getElementById('startScreen');
+      const examScreen = document.getElementById('examScreen');
+      const startExamBtn = document.getElementById('startExamBtn');
+      const backToConfigBtn = document.getElementById('backToConfigBtn');
+      const submitExamBtn = document.getElementById('submitExamBtn');
+      const resetCurrentExamBtn = document.getElementById('resetCurrentExamBtn');
+
+      // Bắt đầu làm bài
+      startExamBtn.addEventListener('click', () => {
+        const lessonVal = document.getElementById('selectedLessonValue').value || 'all';
+        const shuffleVal = document.querySelector('input[name="shuffleOption"]:checked').value;
+        const modeVal = document.querySelector('input[name="modeOption"]:checked').value;
+
+        currentFilter = lessonVal;
+        postSubmitFilter = 'all';
+        isShuffle = (shuffleVal === 'yes');
+        isStudyMode = (modeVal === 'study');
+        isExamSubmitted = false;
+        userAnswers = {};
+
+        document.getElementById('postSubmitFilterBar').classList.add('hidden');
+
+        const currentTitle = document.getElementById('selectedLessonTitle').textContent.trim();
+        document.getElementById('currentLessonBadge').textContent = currentTitle;
+
+        const statusText = document.getElementById('examStatusText');
+        if (isStudyMode) {
+          statusText.textContent = "Chế độ tra cứu (Hiện sẵn đáp án)";
+          submitExamBtn.classList.add('hidden');
+        } else {
+          statusText.textContent = "Đang làm bài (Nộp bài để chấm điểm)";
+          submitExamBtn.classList.remove('hidden');
+        }
+
+        startScreen.classList.add('hidden');
+        examScreen.classList.remove('hidden');
+
+        buildQuestionSet();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // Dropdown chọn bài học
+      const dropdownBtn = document.getElementById('lessonDropdownBtn');
+      const dropdownMenu = document.getElementById('lessonDropdownMenu');
+      const dropdownArrow = document.getElementById('dropdownArrow');
+      const lessonOptions = document.querySelectorAll('.lesson-option');
+      const hiddenInput = document.getElementById('selectedLessonValue');
+
+      dropdownBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = !dropdownMenu.classList.contains('hidden');
+        if (isOpen) {
+          dropdownMenu.classList.add('hidden');
+          dropdownArrow.classList.remove('rotate-180');
+        } else {
+          dropdownMenu.classList.remove('hidden');
+          dropdownArrow.classList.add('rotate-180');
+        }
+      });
+
+      lessonOptions.forEach(opt => {
+        opt.addEventListener('click', () => {
+          const val = opt.getAttribute('data-value');
+          const title = opt.getAttribute('data-title');
+          const desc = opt.getAttribute('data-desc');
+          const icon = opt.getAttribute('data-icon');
+
+          hiddenInput.value = val;
+          document.getElementById('selectedLessonIcon').textContent = icon;
+          document.getElementById('selectedLessonTitle').textContent = title;
+          document.getElementById('selectedLessonDesc').textContent = desc;
+
+          lessonOptions.forEach(o => {
+            o.classList.remove('bg-blue-50/60');
+            const check = o.querySelector('.checkmark');
+            if (check) check.classList.add('hidden');
+          });
+          opt.classList.add('bg-blue-50/60');
+          const activeCheck = opt.querySelector('.checkmark');
+          if (activeCheck) activeCheck.classList.remove('hidden');
+
+          dropdownMenu.classList.add('hidden');
+          dropdownArrow.classList.remove('rotate-180');
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+          dropdownMenu.classList.add('hidden');
+          dropdownArrow.classList.remove('rotate-180');
+        }
+      });
+
+      // Nút quay lại màn hình chọn bài
+      backToConfigBtn.addEventListener('click', () => {
+        if (isExamSubmitted || isStudyMode) {
+          examScreen.classList.add('hidden');
+          startScreen.classList.remove('hidden');
+          document.getElementById('postSubmitFilterBar').classList.add('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+
+        showAppModal({
+          title: 'Quay lại màn hình chính',
+          message: 'Bạn đang làm dở bài thi. Bạn có muốn thoát ra màn hình tùy chọn không?',
+          icon: '?',
+          type: 'info',
+          confirmText: 'Thoát ra',
+          cancelText: 'Làm tiếp',
+          onConfirm: () => {
+            examScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+            document.getElementById('postSubmitFilterBar').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        });
+      });
+
+      // Làm lại bài
+      resetCurrentExamBtn.addEventListener('click', () => {
+        showAppModal({
+          title: 'Xác nhận làm lại',
+          message: 'Bạn có chắc chắn muốn xóa toàn bộ kết quả đã chọn để thi lại từ đầu không?',
+          icon: '?',
+          type: 'danger',
+          confirmText: 'Làm lại ngay',
+          cancelText: 'Hủy',
+          onConfirm: () => {
+            userAnswers = {};
+            isExamSubmitted = false;
+            postSubmitFilter = 'all';
+            document.getElementById('postSubmitFilterBar').classList.add('hidden');
+            document.getElementById('examStatusText').textContent = "Đang làm bài (Nộp bài để chấm điểm)";
+            submitExamBtn.classList.remove('hidden');
+            buildQuestionSet();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        });
+      });
+
+      // Nộp bài & xem đáp án
+      submitExamBtn.addEventListener('click', () => {
+        if (isExamSubmitted) {
+          showAppModal({
+            title: 'Thông báo',
+            message: 'Bài thi đã được nộp. Hãy dùng thanh lọc để xem riêng các câu làm sai.',
+            icon: 'i',
+            type: 'info',
+            confirmText: 'Đã hiểu'
+          });
+          return;
+        }
+
+        let uncompleted = 0;
+        currentQuestions.forEach(q => {
+          if (q.type === 'single') {
+            if (userAnswers[q.id] === undefined) uncompleted++;
+          } else if (q.type === 'tf') {
+            const hasEmpty = q.items.some(it => userAnswers[`${q.id}_${it.label}`] === undefined);
+            if (hasEmpty) uncompleted++;
+          }
+        });
+
+        const performSubmit = () => {
+          isExamSubmitted = true;
+          document.getElementById('examStatusText').textContent = "Đã nộp bài (Hiển thị đáp án chi tiết)";
+          document.getElementById('postSubmitFilterBar').classList.remove('hidden');
+
+          let totalUnits = 0;
+          let correctUnits = 0;
+          let wrongQuestionCount = 0;
+
+          currentQuestions.forEach(q => {
+            let isQCorrect = false;
+            if (q.type === 'single') {
+              totalUnits += 1;
+              if (userAnswers[q.id] !== undefined && q.options[userAnswers[q.id]].isCorrect) {
+                correctUnits += 1;
+                isQCorrect = true;
+              }
+            } else if (q.type === 'tf') {
+              totalUnits += 4;
+              let currentQCorrectItems = 0;
+              q.items.forEach(it => {
+                if (userAnswers[`${q.id}_${it.label}`] === it.isCorrect) {
+                  correctUnits += 1;
+                  currentQCorrectItems++;
+                }
+              });
+              if (currentQCorrectItems === 4) isQCorrect = true;
+            }
+
+            if (!isQCorrect) wrongQuestionCount++;
+          });
+
+          renderAllQuestions();
+
+          const percent = totalUnits > 0 ? Math.round((correctUnits / totalUnits) * 100) : 0;
+          const noticeEl = document.getElementById('wrongNoticeText');
+          if (noticeEl) {
+            noticeEl.innerHTML = wrongQuestionCount > 0 
+              ? `Có <strong class="text-red-600">${wrongQuestionCount} câu</strong> cần xem lại.`
+              : `<strong class="text-emerald-600">Làm đúng 100% câu hỏi!</strong>`;
+          }
+
+          if (wrongQuestionCount > 0) {
+            showAppModal({
+              title: 'Kết quả bài thi',
+              message: `Bạn làm đúng <strong>${correctUnits}/${totalUnits}</strong> ý (đạt <strong>${percent}%</strong>).<br>Có <strong>${wrongQuestionCount} câu</strong> bạn làm sai hoặc chưa hoàn thiện.<br><br>Bạn có muốn <strong>xem riêng các câu sai</strong> để rút kinh nghiệm ngay không?`,
+              icon: '⚠️',
+              type: 'info',
+              confirmText: 'Xem các câu sai',
+              cancelText: 'Xem toàn bộ đề',
+              onConfirm: () => {
+                setPostSubmitFilter('wrong');
+              }
+            });
+          } else {
+            showAppModal({
+              title: 'Chúc mừng!',
+              message: `Bạn đạt điểm tuyệt đối <strong>${correctUnits}/${totalUnits}</strong> ý (tỉ lệ <strong>100%</strong>)!<br><br>Tất cả đáp án đều hoàn toàn chính xác (Xanh lá).`,
+              icon: '✓',
+              type: 'success',
+              confirmText: 'Xem chi tiết đề'
+            });
+          }
+        };
+
+        if (uncompleted > 0) {
+          showAppModal({
+            title: 'Chưa làm xong bài!',
+            message: `Bạn vẫn còn <strong>${uncompleted} câu</strong> chưa hoàn tất. Bạn có chắc chắn muốn nộp bài luôn không?`,
+            icon: '!',
+            type: 'danger',
+            confirmText: 'Nộp bài luôn',
+            cancelText: 'Làm tiếp',
+            onConfirm: performSubmit
+          });
+        } else {
+          performSubmit();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
